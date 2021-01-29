@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
-    width: '100%',
+    width: '50%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
@@ -67,7 +66,7 @@ export default function Menu() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor:'black'}}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -78,7 +77,7 @@ export default function Menu() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Ex-books
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
