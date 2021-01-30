@@ -19,7 +19,8 @@ function App() {
 
       <>
         {/* <Menu/> */}
-        <Home/>
+        
+        <SignUp/>
       </>
 
     

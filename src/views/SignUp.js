@@ -12,6 +12,16 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {  Field } from '@progress/kendo-react-form';
+//import { Button } from '@progress/kendo-react-buttons';
+
+import {
+     FormFloatingNumericTextBox
+} from './form-components.jsx';
+
+import {
+    requiredValidator
+} from './validators.jsx'
 
 function Copyright() {
   return (
@@ -106,6 +116,30 @@ export default function SignUp() {
                 id="password"
                 autoComplete="current-password"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="city"
+                label="city"
+                type="city"
+                id="city"
+                autoComplete="city"
+              />
+            </Grid>
+            
+            <Grid item xs={12}>
+                <Field
+                    id={'age'}
+                    name={'age'}
+                    label={'Age'}
+                    hint={'Hint: Enter your age.'}
+                    format={'n2'}
+                    component={FormFloatingNumericTextBox}
+                    validator={requiredValidator}
+                />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
