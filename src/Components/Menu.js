@@ -7,13 +7,19 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import logo from '../logo.png';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import {NavLink} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -29,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
-    width: '50%',
+    width: '40%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
@@ -62,21 +68,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Menu() {
+export default function AppMenu() {
   const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor:'black'}}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+        <NavLink style={{ textDecoration: 'black' }} to="/"><img src={logo} alt="logo" /></NavLink>
+        <Typography className={classes.title} variant="h6" noWrap>
             Ex-books
           </Typography>
           <div className={classes.search}>
@@ -92,6 +103,23 @@ export default function Menu() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <MenuIcon style={{color:'white'}}/>
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>My Profile</MenuItem>
+        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/AllBooks">All Books </NavLink></MenuItem>
+        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/MyBooks">My Books</NavLink></MenuItem>
+        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/WishList">Wish List</NavLink></MenuItem>
+        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/MySwaps">My Swaps</NavLink></MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
         </Toolbar>
       </AppBar>
     </div>
