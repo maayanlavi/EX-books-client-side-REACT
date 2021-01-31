@@ -10,7 +10,6 @@ class AllBooks extends Component {
     render() {
         return(
             <>
-            <h1 style={{textAlign:'center',color:'#8C6630', fontFamily: 'Open Sans',}}>ALL BOOKS</h1>
             <div className="books">
                 <Book></Book>
             </div>

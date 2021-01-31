@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
+import Reviews from './reviews';
+
 
 
 class booksButtons extends Component {
@@ -27,8 +30,8 @@ class booksButtons extends Component {
         return(
             <>
             <button style={this.btnStyle}>Offer to replacement</button>
-            <button style={this.btnStyle}>Add a review</button>
-            <button style={this.btnStyle}>All reviews</button>
+            {/* <button style={this.btnStyle}>Add a review</button> */}
+            <button style={this.btnStyle}><NavLink style={{ textDecoration: 'black' }} to="/AllReviews">All reviews</NavLink></button>
             <button style={this.btnStyle}>&hearts; Add to wishlist &hearts; </button>
             </>
         )

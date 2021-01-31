@@ -118,7 +118,7 @@ export default function AppMenu() {
         <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/MyBooks">My Books</NavLink></MenuItem>
         <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/WishList">Wish List</NavLink></MenuItem>
         <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/MySwaps">My Swaps</NavLink></MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/SignIn">Logout</NavLink></MenuItem>
       </Menu>
         </Toolbar>
       </AppBar>

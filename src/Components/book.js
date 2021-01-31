@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import { MdDelete, MdEdit } from 'react-icons/md';
 import placeholder from '../popular-1.jpg';
+import {NavLink} from 'react-router-dom';
 
 
 class book extends Component {
@@ -58,7 +59,7 @@ class book extends Component {
     render() {
         return (
             <div className="book" style={this.divStyle}> 
-                <img src={placeholder} style={this.imgStyle} alt="light"/>
+                <NavLink style={{ textDecoration: 'black' }} to="/Book"><img src={placeholder} style={this.imgStyle} alt="book"/></NavLink>
                 <h3 style={this.style1}>book name</h3>
             </div>
         )

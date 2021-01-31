@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {NavLink} from 'react-router-dom';
+
 
 function Copyright() {
   return (
@@ -108,6 +110,18 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="city"
+                label="city"
+                type="city"
+                id="city"
+                autoComplete="city"
+              />
+            </Grid>
+            <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
@@ -125,9 +139,9 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <NavLink to="/SignIn" variant="body2">
                 Already have an account? Sign in
-              </Link>
+              </NavLink>
             </Grid>
           </Grid>
         </form>
