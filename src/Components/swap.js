@@ -12,6 +12,7 @@ class AllBooks extends Component {
         color:'black',
         fontFamily: 'verdana',
         position:'absolute',
+        top:'100px',
         left:'0',
         right:'0',
         border: '1px solid'

@@ -28,7 +28,7 @@ class book extends Component {
     }
     imgStyle = {
         position:'absolute',
-        top: '25px',
+        top: '0',
         left:'0',
         right:'0',
         display: 'block',
@@ -39,19 +39,19 @@ class book extends Component {
 
     style1 = {
         textAlign: 'center',
-        fontSize: '25px',
+        fontSize: '20px',
         color:'black',
         fontWeight: 'bold',
         fontFamily: 'verdana',
         position:'absolute',
-        top:'180px',
         left:'0',
         right:'0',
+        top:'150px'
     }
 
     divStyle = {
-        position:'absolute',
-        //top:'100px',
+        position:'relative',
+        top:'120px',
         left:'0',
         right:'0',
     }
@@ -59,10 +59,6 @@ class book extends Component {
     render() {
         return (
             <>
-            <div className="book" style={this.divStyle}> 
-                <NavLink style={{ textDecoration: 'black' }} to="/Book"><img src={placeholder} style={this.imgStyle} alt="book"/></NavLink>
-                <h3 style={this.style1}>book name</h3>
-            </div>
             <div className="book" style={this.divStyle}> 
                 <NavLink style={{ textDecoration: 'black' }} to="/Book"><img src={placeholder} style={this.imgStyle} alt="book"/></NavLink>
                 <h3 style={this.style1}>book name</h3>

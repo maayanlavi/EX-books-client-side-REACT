@@ -1,127 +1,71 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import logo from '../logo.png';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+import LocalLibraryTwoToneIcon from '@material-ui/icons/LocalLibraryTwoTone';
+import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
+import SwapHorizontalCircleTwoToneIcon from '@material-ui/icons/SwapHorizontalCircleTwoTone';
+import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
 import {NavLink} from 'react-router-dom';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '40%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
+export default function TriggersTooltips() {
+  const [open, setOpen] = React.useState(false);
 
-export default function AppMenu() {
-  const classes = useStyles();
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleTooltipClose = () => {
+    setOpen(false);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleTooltipOpen = () => {
+    setOpen(true);
   };
-
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor:'black'}}>
-        <Toolbar>
-        <NavLink style={{ textDecoration: 'black' }} to="/"><img src={logo} alt="logo" /></NavLink>
-        <Typography className={classes.title} variant="h6" noWrap>
-            Ex-books
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+    <div style={{position:'fixed', right:'0', left:'0', bottom:'0', width:'100%', bottom:'0', backgroundColor:'white'}}>
+      <Grid container justify="center">
+        <Grid item>
+          <Tooltip disableFocusListener title="Add">
+            <div style={{position:'relative'}}>      
+              <MenuBookTwoToneIcon style={{position:'absolute', left:'35%'}}/>
+              <NavLink to="/AllBooks"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>All Books</Button></NavLink>
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+          </Tooltip>
+        </Grid>
+        <Grid item>
+          <Tooltip disableHoverListener title="Add">
+          <div style={{position:'relative'}}>      
+              <LocalLibraryTwoToneIcon style={{position:'absolute', left:'35%'}}/>
+              <NavLink to="/MyBooks"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>My Books</Button></NavLink>
+            </div>
+          </Tooltip>
+        </Grid>
+        <Grid item>
+          <Tooltip disableFocusListener disableTouchListener title="Add">
+          <div style={{position:'relative'}}>      
+              <FavoriteTwoToneIcon style={{position:'absolute', left:'35%'}}/>
+              <NavLink to="/Wishlist"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>Wish List</Button></NavLink>
           </div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-      <MenuIcon style={{color:'white'}}/>
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>My Profile</MenuItem>
-        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/AllBooks">All Books </NavLink></MenuItem>
-        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/MyBooks">My Books</NavLink></MenuItem>
-        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/WishList">Wish List</NavLink></MenuItem>
-        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/MySwaps">My Swaps</NavLink></MenuItem>
-        <MenuItem onClick={handleClose}><NavLink style={{ textDecoration: 'black' }} to="/SignIn">Logout</NavLink></MenuItem>
-      </Menu>
-        </Toolbar>
-      </AppBar>
+          </Tooltip>
+        </Grid>
+        <Grid item>
+          <Tooltip disableFocusListener disableTouchListener title="Add">
+          <div style={{position:'relative'}}>      
+              <SwapHorizontalCircleTwoToneIcon style={{position:'absolute', left:'35%'}}/>
+              <NavLink to="/Myswaps"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>My Swaps</Button></NavLink>
+          </div>
+          </Tooltip>
+        </Grid>
+        <Grid item>
+          <Tooltip disableFocusListener disableTouchListener title="Add">
+          <div style={{position:'relative'}}>      
+              <ExitToAppTwoToneIcon style={{position:'absolute', left:'35%'}}/>
+              <NavLink to="/SignIn"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>Logout</Button></NavLink>
+          </div>
+          </Tooltip>
+        </Grid>
+      </Grid>
     </div>
   );
 }

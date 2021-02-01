@@ -21,7 +21,6 @@ import MakeASwap from '../views/MakeASwap';
 const ReactRouter =() => {
         return(
             <React.Fragment>
-                {/* <Menu/> */}
                 <Route exact path='/' component={ReadBooks}/>
                 <Route path="/MyBooks" component={MyBooks}/>
                 <Route path="/AllBooks" component={AllBooks}/>
@@ -34,7 +33,6 @@ const ReactRouter =() => {
                 <Route path="/AllReviews" component={AllReviews}/>
                 <Route path="/ReviewThem" component={ReviewThem}/>
                 <Route path="/MakeASwap" component={MakeASwap}/>
-
             </React.Fragment>
         )
 }
