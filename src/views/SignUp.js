@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {  Field } from '@progress/kendo-react-form';
+import {NavLink} from 'react-router-dom';
+
 //import { Button } from '@progress/kendo-react-buttons';
 
 import {
@@ -129,17 +131,17 @@ export default function SignUp() {
                 autoComplete="city"
               />
             </Grid>
-            
             <Grid item xs={12}>
-                <Field
-                    id={'age'}
-                    name={'age'}
-                    label={'Age'}
-                    hint={'Hint: Enter your age.'}
-                    format={'n2'}
-                    component={FormFloatingNumericTextBox}
-                    validator={requiredValidator}
-                />
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="age"
+                label="age"
+                type="age"
+                id="age"
+                autoComplete="age"
+              />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
