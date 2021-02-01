@@ -33,7 +33,6 @@ export default class Profile extends React.Component {
         <label htmlFor='ProfilePhoto'>
         ProfilePhoto
         </label>
-        <img src='profileImage.png' alt='Profile photo' />
         <img src={this.state.image} alt='Profile photo' />
         <br/>
         <label htmlFor='Name'>
