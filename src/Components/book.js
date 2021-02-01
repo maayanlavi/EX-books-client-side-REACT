@@ -58,10 +58,17 @@ class book extends Component {
 
     render() {
         return (
+            <>
             <div className="book" style={this.divStyle}> 
                 <NavLink style={{ textDecoration: 'black' }} to="/Book"><img src={placeholder} style={this.imgStyle} alt="book"/></NavLink>
                 <h3 style={this.style1}>book name</h3>
             </div>
+            <div className="book" style={this.divStyle}> 
+                <NavLink style={{ textDecoration: 'black' }} to="/Book"><img src={placeholder} style={this.imgStyle} alt="book"/></NavLink>
+                <h3 style={this.style1}>book name</h3>
+            </div>
+            </>
+            
         )
     }
 }

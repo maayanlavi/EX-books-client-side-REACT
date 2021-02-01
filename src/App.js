@@ -8,6 +8,7 @@ import AllBooks from './views/AllBooks';
 import MyBooks from './views/MyBooks';
 import MySwaps from './views/MySwaps';
 import WishList from './views/WishList';
+import ReadBooks from './views/ReadBooks';
 
 
 
@@ -19,7 +20,7 @@ function App() {
 
       <>
         {/* <Menu/> */}
-        <Home/>
+        <ReadBooks/>
       </>
 
     
