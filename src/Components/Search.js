@@ -5,8 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
+import {NavLink} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +72,11 @@ export default function SearchAppBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
+      <NavLink to='/Profile'><div style={{color:'white', position:'absolute', left:'85%',zIndex:'1'}}>
+                <Toolbar>            
+                    <PersonIcon/>
+                </Toolbar>
+            </div></NavLink>
         <Toolbar>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

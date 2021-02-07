@@ -1,41 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import RestoreIcon from '@material-ui/icons/Star';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/Add';
 import {NavLink} from 'react-router-dom';
-import Reviews from './reviews';
 
+const useStyles = makeStyles({
+  root: {
+  },
+});
 
+export default function BookButtons() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
-class booksButtons extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    btnStyle = {
-        position:'relative',
-        display: 'block',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 'auto',
-        backgroundColor: '#E9D898',
-        color: '#8C6630',
-        textAlign: 'center',
-        fontSize: '20px',
-        border:'1px solid #8C6630',
-        borderRadius:'10px',
-        fontFamily: 'verdana',
-        width:'70%',
-        marginTop:'15px'
-    }
-
-    render() {
-        return(
-            <>
-            <button style={this.btnStyle}>Offer to replacement</button>
-            {/* <button style={this.btnStyle}>Add a review</button> */}
-            <button style={this.btnStyle}><NavLink style={{ textDecoration: 'black' }} to="/AllReviews">All reviews</NavLink></button>
-            <button style={this.btnStyle}>&hearts; Add to wishlist &hearts; </button>
-            </>
-        )
-    }
+  return (
+    <BottomNavigation
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      showLabels
+      className={classes.root}
+    >
+      <BottomNavigationAction label="Reviews" icon={<RestoreIcon />} />
+      <BottomNavigationAction label="WishList" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="Add" icon={<LocationOnIcon />} />
+    </BottomNavigation>
+  );
 }
-
-export default booksButtons;

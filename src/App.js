@@ -9,17 +9,11 @@ import MyBooks from './views/MyBooks';
 import MySwaps from './views/MySwaps';
 import WishList from './views/WishList';
 import ReadBooks from './views/ReadBooks';
-
-
-
-//import { Menu } from '@material-ui/core';
 import SignUp from './views/SignUp';
 
 function App() {
   return (
-
       <>
-        {/* <Menu/> */}
         <Home/>
       </>
 

@@ -29,7 +29,7 @@ export default function TriggersTooltips() {
           <Tooltip disableFocusListener title="Add">
             <div style={{position:'relative'}}>      
               <MenuBookTwoToneIcon style={{position:'absolute', left:'35%'}}/>
-              <NavLink to="/AllBooks"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>All Books</Button></NavLink>
+              <NavLink to="/AllBooks"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>Library</Button></NavLink>
             </div>
           </Tooltip>
         </Grid>

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Review from './review';
 import AddReviewForm from './AddReviewForm';
+import Menu from '../Components/Menu';
+import header from '../assets/css/img/ReadBooks/header.png';
+import Search from '../Components/Search';
 
 class Reviews extends Component {
     constructor(props) {
@@ -24,24 +27,6 @@ class Reviews extends Component {
         this.handleText = this.handleText.bind(this);
         this.handleStars = this.handleStars.bind(this);
     }
-
-    // componentDidMount() {
-    //     deliveriesData.map(item => this.addJson({id: item.id, Date: item.date, Name: item.name, City: item.city}));
-    // }
-
-    // addJson({id = null, Date = 'default date', Name = 'ploni', City = 'default city'}) {
-    //     this.setState(prevState => ({
-            
-    //         deliveries: [
-    //             ...prevState.deliveries, {
-    //                 id: this.nextId(prevState.deliveries),
-    //                 date: Date, 
-    //                 name: Name,
-    //                 city: City
-    //             }
-    //         ]
-    //     }))
-    // }
 
     eachReview(item, i) {
         return <Review key={i} index={item.id} onDelete={this.delete} onUpdate={this.update}>{item.name} <br/> {item.text} <br/> {item.stars} </Review>
@@ -140,12 +125,18 @@ class Reviews extends Component {
     render() {
         return(
             <>
-            <div className="review" style={this.reviewStyle}>
-                {this.state.reviews.map(this.eachReview)}
-            </div>
-            <div className="form" style={this.formStyle}>
-                <AddReviewForm name={this.state.name} text={this.state.text} stars={this.state.stars} button={this.state.button} onSubmitForm= {this.add} handleName={this.handleName} handleText={this.handleText} handleStars={this.handleStars} />
-            </div>
+                <div style={{position:'relative'}}>
+                    <img src={header} style={{width:'100%', position: 'absolute', left:'0%', right:'0%', top: '-12%', bottom:'80%'}}  alt="header"/>
+                    <Search></Search>
+                    <div className="review" style={this.reviewStyle}>
+                        {this.state.reviews.map(this.eachReview)}
+                    </div>
+                    <div className="form" style={this.formStyle}>
+                        <AddReviewForm name={this.state.name} text={this.state.text} stars={this.state.stars} button={this.state.button} onSubmitForm= {this.add} handleName={this.handleName} handleText={this.handleText} handleStars={this.handleStars} />
+                    </div>
+                </div>
+                    
+                <Menu/>
             </>
         )
     }
