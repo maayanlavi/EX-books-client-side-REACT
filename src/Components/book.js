@@ -8,24 +8,7 @@ class book extends Component {
     constructor(props){
         super(props);
     }
-    btnStyle = {
-        position:'absolute',
-        top: '250px',
-        left:'0',
-        right:'0',
-        display: 'block',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 'auto',
-        backgroundColor: '#E9D898',
-        color: '#8C6630',
-        textAlign: 'center',
-        fontSize: '25px',
-        border:'1px solid #8C6630',
-        borderRadius:'10px',
-        fontFamily: 'verdana',
 
-    }
     imgStyle = {
         position:'absolute',
         top: '0',
@@ -51,7 +34,7 @@ class book extends Component {
 
     divStyle = {
         position:'relative',
-        top:'120px',
+        top:'50px',
         left:'0',
         right:'0',
     }
