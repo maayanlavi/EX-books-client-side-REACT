@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,6 +28,7 @@ import {
 import {
     requiredValidator
 } from './validators.jsx'
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,6 +52,41 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [registerfirstName, setRegisterfirstName]= useState("");
+  const [registerlastName, setRegisterlastName]= useState("");
+  const [registeremail, setRegisteremail]= useState("");
+  const [registerpassword, setRegisterpassword]= useState("");
+  const [registercity, setRegistercity]= useState("");
+  const [registerstreet, setRegisterstreet]= useState("");
+  const [registerphoneNum, setRegisterphoneNum]= useState("");
+  const [registerage, setRegisterage]= useState("");
+  const register=(e)=>{
+    e.preventDefault();
+    console.log(process.env)
+    axios({
+      method: "POST",
+      data:{
+        first_name: registerfirstName,
+        last_name: registerlastName,
+        email: registeremail,
+        password: registerpassword,
+        address: {
+          city: registercity,
+          street: registerstreet
+        },
+        phone_num: registerphoneNum,
+        age: registerage
+      },
+      withCredentials: true,
+      url: `${process.env.REACT_APP_SERVER}/register`
+    }).then(res=> console.log(res));
+
+  }
+
+  const getUser=()=>{};
+
+
+
 
   return (
     
@@ -68,22 +104,28 @@ export default function SignUp() {
         <form className={classes.form} noValidate style={{position:'absolute', top:'35%'}}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField autoComplete="fname" name="firstName" variant="outlined" required fullWidth id="firstName" label="First Name" autoFocus/>
+              <TextField autoComplete="fname" onChange={e => setRegisterfirstName(e.target.value) } name="firstName" variant="outlined" required fullWidth id="firstName" label="First Name" autoFocus/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField variant="outlined" required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="lname" />
+              <TextField variant="outlined" onChange={e=> setRegisterlastName(e.target.value)} required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="lname" />
             </Grid>
             <Grid item xs={12}>
-              <TextField variant="outlined" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
+              <TextField variant="outlined" onChange={e=>setRegisteremail(e.target.value)} required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
             </Grid>
             <Grid item xs={12}>
-              <TextField variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+              <TextField variant="outlined" onChange={e=>setRegisterpassword(e.target.value)} required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
             </Grid>
             <Grid item xs={12}>
-              <TextField variant="outlined" required fullWidth name="city" label="city" type="city" id="city" autoComplete="city" />
+              <TextField variant="outlined" onChange={e=>setRegistercity(e.target.value)} required fullWidth name="city" label="city" type="city" id="city" autoComplete="city" />
             </Grid>
             <Grid item xs={12}>
-              <TextField variant="outlined" required fullWidth name="age" label="age" type="age" id="age" autoComplete="age" />
+              <TextField variant="outlined" onChange={e=>setRegisterstreet(e.target.value)} required fullWidth name="street" label="street" type="street" id="street" autoComplete="street" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField variant="outlined" onChange={e=>setRegisterage(e.target.value)} required fullWidth name="age" label="age" type="age" id="age" autoComplete="age" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField variant="outlined" onChange={e=>setRegisterphoneNum(e.target.value)} required fullWidth name="phoneNum" label="phoneNum" type="phoneNum" id="phoneNum" autoComplete="phoneNum" />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} 
@@ -91,7 +133,7 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" className={classes.submit} style={{backgroundColor:'rgba(186, 251, 103, 1)', color:'white', fontFamily:'tahoma'}} >
+          <Button type="submit" onClick={register} fullWidth variant="contained" className={classes.submit} style={{backgroundColor:'rgba(186, 251, 103, 1)', color:'white', fontFamily:'tahoma'}} >
            <b>Sign Up</b> 
           </Button>
           <Grid container justify="flex-end">
