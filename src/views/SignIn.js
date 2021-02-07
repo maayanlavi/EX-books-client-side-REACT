@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +16,7 @@ import Container from '@material-ui/core/Container';
 import {NavLink} from 'react-router-dom';
 import blueTop from '../assets/css/img/ReadBooks/Ellipse8.png';
 import orange from '../assets/css/img/ReadBooks/Ellipse6.png';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +41,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [signInemail, setSingInemail]= useState("");
+  const [signInpassword, setSingInpassword]= useState("");
+  const login=()=>{
+    axios({
+      method:"POST",
+      data:{
+        email: signInemail,
+        password: signInpassword,
+      },
+      withCredentials: true,
+      url: `${process.env.SERVER}/login`
+    }).then(res=> console.log(res));
+
+  };
+  const getUser=()=>{
+    axios({
+      method: "GET",
+      withCredentials: true,
+
+    }).then((res)=>console.log(res));
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,7 +79,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}  style={{backgroundColor:'rgba(186, 251, 103, 1)', color:'white', fontFamily:'tahoma'}}>
+          <Button type="submit" onClick= {login} fullWidth variant="contained" color="primary" className={classes.submit}  style={{backgroundColor:'rgba(186, 251, 103, 1)', color:'white', fontFamily:'tahoma'}}>
             <b>Sign In</b>
           </Button>
           <Grid container>
