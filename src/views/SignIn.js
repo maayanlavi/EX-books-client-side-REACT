@@ -68,11 +68,11 @@ export default function SignIn() {
       <CssBaseline />
       <img src={blueTop} style={{position: 'absolute', left:'-1%', top: '-1%'}}  alt="book"/>
       <div className={classes.paper}>
-      <img src={orange} style={{position: 'absolute', left:'80%', right:'-20%', top: '14%', bottom:'70%', width:'30%' }}  alt="book"/>
+      <img src={orange} style={{position: 'absolute', left:'70%', top: '14%', bottom:'70%', width:'30%' }}  alt="book"/>
         <Typography component="h1" variant="h5" style={{position:'absolute', top:'25%', color:'rgba(56, 79, 125, 0.8)'}}>
           Sign in
         </Typography>
-        <form className={classes.form} noValidate style={{position:'absolute', top:'35%'}}>
+        <form className={classes.form} noValidate style={{position:'absolute', top:'35%', width:'90%'}}>
           <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
           <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
           <FormControlLabel

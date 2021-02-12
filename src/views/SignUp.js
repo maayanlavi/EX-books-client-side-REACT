@@ -101,7 +101,7 @@ export default function SignUp() {
         <Typography variant="h7" style={{position:'absolute', top:'30%',textAlign:'center', color:'rgba(56, 79, 125, 0.8)'}}>
         Create your account to get started. After that, you can share books and make swaps.
         </Typography>
-        <form className={classes.form} noValidate style={{position:'absolute', top:'35%'}}>
+        <form className={classes.form} noValidate style={{position:'absolute', top:'35%', width:'90%'}}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField autoComplete="fname" onChange={e => setRegisterfirstName(e.target.value) } name="firstName" variant="outlined" required fullWidth id="firstName" label="First Name" autoFocus/>

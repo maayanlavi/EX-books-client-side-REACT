@@ -6,6 +6,8 @@ import RestoreIcon from '@material-ui/icons/Star';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/Add';
 import {NavLink} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles({
   root: {
@@ -25,7 +27,7 @@ export default function BookButtons() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Reviews" icon={<RestoreIcon />} />
+      <BottomNavigationAction component={Link} to="/AllReviews" label="Reviews" icon={<RestoreIcon />} />
       <BottomNavigationAction label="WishList" icon={<FavoriteIcon />} />
       <BottomNavigationAction label="Add" icon={<LocationOnIcon />} />
     </BottomNavigation>
