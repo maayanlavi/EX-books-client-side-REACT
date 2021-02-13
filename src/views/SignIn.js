@@ -55,17 +55,19 @@ export default function SignIn() {
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/login`
     })
-    .then(res=> history.push('/Library'))
+    .then(res=> {
+      //get the user id, and pass to library
+      return axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_SERVER}/api/current_user`,
+        withCredentials: true
+      })
+    })
+    .then(res => {console.log(res); return res.data._id})
+    .then(userId => history.push(`/Library/${userId}`))
     .catch(err => console.log("show message login failed")) //maayan / dana i dont know how to fix the overflow and cant add stuff
   };
-  const getUser=()=>{
-    axios({
-      method: "GET",
-      withCredentials: true,
-
-    }).then((res)=>console.log(res));
-  };
-
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

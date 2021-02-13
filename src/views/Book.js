@@ -22,7 +22,6 @@ export default function (props) {
                 }
             )
             .then(res => res.data)
-            console.log(bookInfo)
             setBook(bookInfo);
         };
 
@@ -37,7 +36,7 @@ export default function (props) {
                 <div className="books">
                     <Book name={book.title} cover={book.covers ? book.covers[0] : null} ></Book>
                     <div className="buttons" style={{ marginTop: '40%' }}>
-                        <BooksButtons></BooksButtons>
+                        <BooksButtons ></BooksButtons>
                     </div>
                 </div>
             </div>

@@ -5,8 +5,10 @@ import Search from '../Components/Search';
 import Menu from '../Components/Menu';
 import axios from 'axios';
 import { Grid } from '@material-ui/core';
+import { useParams } from 'react-router-dom';
 
 export default function AllBooks() {
+        const params = useParams()
         const [books, setBooks] = useState([])
         useEffect(() => {
             const fetchData = async () => {
