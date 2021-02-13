@@ -20,7 +20,6 @@ export default function AllBooks() {
 
             fetchData();
         }, []);
-           
         return(
             <>
                 <div style={{position:'relative' }}>
@@ -28,7 +27,7 @@ export default function AllBooks() {
                     <h2 style={{color:'white', fontFamily:'Tahoma', position:'absolute', left:'0', right:'0', textAlign:'center', top:'50px'}}>Library</h2>  
                     <Search></Search>
                     <Grid container direction='column'>
-                        {books.map(b => <Grid item xs key={b.id}> <Book cover={b.cover} name={b.name} id={b.id}/> </Grid>)}
+                        {books.map(b => <Grid item  key={b.id}> <Book cover={b.cover} name={b.name} id={b.id}/> </Grid>)}
                     </Grid>
                     <Menu/>
                 </div>

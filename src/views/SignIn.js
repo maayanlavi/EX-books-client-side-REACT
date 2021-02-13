@@ -55,7 +55,7 @@ export default function SignIn() {
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/login`
     })
-    .then(res=> history.push('/AllBooks'))
+    .then(res=> history.push('/Library'))
     .catch(err => console.log("show message login failed")) //maayan / dana i dont know how to fix the overflow and cant add stuff
   };
   const getUser=()=>{
