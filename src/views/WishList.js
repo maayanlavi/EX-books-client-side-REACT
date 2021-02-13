@@ -17,7 +17,7 @@ export default function MyBooks() {
                     <h2 style={{color:'white', fontFamily:'Tahoma', position:'absolute', left:'0', right:'0', textAlign:'center', top:'50px'}}>My Wish List</h2>  
                     <Search></Search>
                     <div style={{position:'absolute', top:'150px', left:'0', right:'0'}}>
-                        <button style={{position:'absolute', left:'0', right:'0', top:'10px', display: 'block', justifyContent: 'center', alignItems: 'center', margin: 'auto', backgroundColor: 'rgba(186, 251, 103, 1)', color: 'black', textAlign: 'center', fontSize: '25px', border:'1px solid #8C6630', borderRadius:'10px'}}><DeleteIcon/></button>
+                        <button style={{position:'absolute', left:'0', right:'0', top:'10px', display: 'block', justifyContent: 'center', alignItems: 'center', margin: 'auto', backgroundColor: 'white', color: 'black', textAlign: 'center', fontSize: '25px', border:'1px solid white', borderRadius:'10px'}}><DeleteIcon/></button>
                         <Book></Book>
                     </div>
                 </div>
