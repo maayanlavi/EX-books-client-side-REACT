@@ -10,9 +10,9 @@ class Reviews extends Component {
         super(props);
 
         this.state = {
-            name:'name',
-            text:'text',
-            stars:0,
+            name:'',
+            text:'',
+            stars:'',
             button:'Save',
             id: -1,
             reviews: [ ]
@@ -26,6 +26,7 @@ class Reviews extends Component {
         this.handleName = this.handleName.bind(this);
         this.handleText = this.handleText.bind(this);
         this.handleStars = this.handleStars.bind(this);
+        this.displayStars = this.displayStars.bind(this);
     }
 
     eachReview(item, i) {
@@ -43,6 +44,15 @@ class Reviews extends Component {
     handleStars(e) {
         this.setState({stars: e.target.value});
     }
+
+    displayStars() {
+        var stars = '';
+        for (var i=0;i<this.state.stars;++i)
+        {
+            stars+='* ';
+        }
+        return stars;
+    }
      
     add() {
 
@@ -52,9 +62,9 @@ class Reviews extends Component {
                 reviews: [
                     ...prevState.reviews, {
                         id: this.nextId(prevState.reviews),
-                        name: this.state.name !== 'name' ?  this.state.name : 'anonymous',   
-                        text: this.state.text !== 'text' ? this.state.text : 'nothing to say',
-                        stars: this.state.stars !== 'stars' ? this.state.stars : 5
+                        name: this.state.name !== '' ?  this.state.name : 'anonymous',   
+                        text: this.state.text !== '' ? this.state.text : 'nothing to say',
+                        stars: this.state.stars !== '' ? this.displayStars() : '*' //one star is the default
                     }
                 ]
             }))
@@ -72,9 +82,9 @@ class Reviews extends Component {
     }
 
     this.setState(() => ({
-        name:'name',
-        text:'text',
-        stars:0,
+        name:'',
+        text:'',
+        stars:'',
         button:'Save',
     })) 
 }
@@ -104,11 +114,12 @@ class Reviews extends Component {
         backgroundColor: 'white',
         position: 'absolute',
         width: '100%',
+        border: '1px black solid',
         borderRadius: '13px',
         left: '0',
         right:'0',
         height: '557px',
-        maxHeight: '557px',
+        maxHeight: '350px',
         overflow:'scroll',
         
     }

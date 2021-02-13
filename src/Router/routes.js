@@ -23,7 +23,7 @@ const ReactRouter =() => {
             <React.Fragment>
                 <Route exact path='/' component={ReadBooks}/>
                 <Route path="/MyBooks" component={MyBooks}/>
-                <Route path="/AllBooks" component={AllBooks}/>
+                <Route path="/Library" component={AllBooks}/>
                 <Route path="/WishList" component={WishList}/>
                 <Route path="/MySwaps" component={MySwaps}/>
                 <Route path="/SignIn" component={SignIn}/>

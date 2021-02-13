@@ -4,7 +4,7 @@ import './App.css';
 import Home from './views/HomePage';
 import Book from './Components/book';
 import BookPage from './views/Book';
-import AllBooks from './views/AllBooks';
+import { AllBooks } from './views/AllBooks';
 import MyBooks from './views/MyBooks';
 import MySwaps from './views/MySwaps';
 import WishList from './views/WishList';

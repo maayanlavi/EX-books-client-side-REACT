@@ -30,20 +30,23 @@ class AddReviewForm extends Component {
     }
 
     labelStyle = {
-        width: '400px',
         height:'60px',
-        marginTop:'14px',
+        width:'150%',
+        marginTop:'10px',
         borderRadius: '5px',
         fontStyle: 'normal',
         fontWeight: '700',
         fontSize: '18px',
-        border: '2px solid black'
+        border: '2px solid black',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        marginLeft:'25%'
 
     }
      
     render() {
         return (
-            <div className="form">
+            <div className="form" style={{width:'100%', height:'100%', position:'absolute', top:'-50px'}}>
             <label>
                 <input style={this.labelStyle} placeholder="NAME" type="text" name="name" value={this.props.name} onChange={this.handleName}/>
             </label> 
