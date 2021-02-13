@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import { MdDelete, MdEdit } from 'react-icons/md';
 import placeholder from '../popular-1.jpg';
 import {NavLink} from 'react-router-dom';
+import { Grid, Typography } from '@material-ui/core';
 
 
 class book extends Component {
@@ -9,43 +10,23 @@ class book extends Component {
         super(props);
     }
 
-    imgStyle = {
-        position:'absolute',
-        top: '0',
-        left:'0',
-        right:'0',
-        display: 'block',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 'auto',                  
-    }
-
-    style1 = {
-        textAlign: 'center',
-        fontSize: '20px',
-        color:'black',
-        fontWeight: 'bold',
-        fontFamily: 'verdana',
-        position:'absolute',
-        left:'0',
-        right:'0',
-        top:'150px'
-    }
-
-    divStyle = {
-        position:'relative',
-        top:'50px',
-        left:'0',
-        right:'0',
-    }
-
     render() {
+        console.log(this.props)
+        let coverUrl = this.props.cover ? `https://covers.openlibrary.org/b/id/${this.props.cover}-M.jpg` : 'https://via.placeholder.com/108x100.png'
         return (
             <>
-            <div className="book" style={this.divStyle}> 
-                <NavLink style={{ textDecoration: 'black' }} to="/Book"><img src={placeholder} style={this.imgStyle} alt="book"/></NavLink>
-                <h3 style={this.style1}>book name</h3>
-            </div>
+            <Grid container direction='column' alignItems='center' justify='center'>
+                <Grid item xs>
+                    <NavLink to={`/Book/${this.props.id}`}><img src={coverUrl} style={this.imgStyle} alt="book"/></NavLink>
+                </Grid>
+                <Grid item xs>
+                    <NavLink to={`/Book/${this.props.id}`}><Typography align='center'>{this.props.name}</Typography></NavLink>
+                </Grid>
+            </Grid>
+            {/* <div className="book" style={this.divStyle}> 
+                <NavLink style={{ textDecoration: 'black' }} to="/Book"></NavLink>
+                <h3 style={this.style1}>{this.props.name}</h3>
+            </div> */}
             </>
             
         )
