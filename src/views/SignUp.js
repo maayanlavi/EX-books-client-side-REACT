@@ -62,7 +62,6 @@ export default function SignUp() {
   const [registerage, setRegisterage]= useState("");
   const register=(e)=>{
     e.preventDefault();
-    console.log(process.env)
     axios({
       method: "POST",
       data:{

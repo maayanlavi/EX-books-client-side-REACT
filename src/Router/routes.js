@@ -29,7 +29,7 @@ const ReactRouter =() => {
                 <Route path="/SignIn" component={SignIn}/>
                 <Route path="/SignUp" component={SignUp}/>                
                 <Route path="/Profile" component={Profile}/>
-                <Route path="/Book" component={Book}/>
+                <Route exact path="/Book/:id" component={Book}/>
                 <Route path="/AllReviews" component={AllReviews}/>
                 <Route path="/ReviewThem" component={ReviewThem}/>
                 <Route path="/MakeASwap" component={MakeASwap}/>

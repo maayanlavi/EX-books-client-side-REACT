@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 import blueTop from '../assets/css/img/ReadBooks/Ellipse8.png';
 import orange from '../assets/css/img/ReadBooks/Ellipse6.png';
 import axios from 'axios';
@@ -41,9 +41,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-  const [signInemail, setSingInemail]= useState("");
-  const [signInpassword, setSingInpassword]= useState("");
-  const login=()=>{
+  const [signInemail, setSignInemail]= useState("");
+  const [signInpassword, setSignInpassword]= useState("");
+  const history = useHistory()
+  const login=(event)=>{
+    event.preventDefault();
     axios({
       method:"POST",
       data:{
@@ -51,18 +53,21 @@ export default function SignIn() {
         password: signInpassword,
       },
       withCredentials: true,
-      url: `${process.env.SERVER}/login`
-    }).then(res=> console.log(res));
-
+      url: `${process.env.REACT_APP_SERVER}/login`
+    })
+    .then(res=> {
+      //get the user id, and pass to library
+      return axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_SERVER}/api/current_user`,
+        withCredentials: true
+      })
+    })
+    .then(res => {console.log(res); return res.data._id})
+    .then(userId => history.push(`/Library/${userId}`))
+    .catch(err => console.log("show message login failed")) //maayan / dana i dont know how to fix the overflow and cant add stuff
   };
-  const getUser=()=>{
-    axios({
-      method: "GET",
-      withCredentials: true,
-
-    }).then((res)=>console.log(res));
-  };
-
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -73,8 +78,8 @@ export default function SignIn() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate style={{position:'absolute', top:'35%', width:'90%'}}>
-          <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
-          <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+        <TextField onChange={e => setSignInemail(e.target.value)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+          <TextField onChange={e => setSignInpassword(e.target.value)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
