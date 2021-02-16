@@ -55,7 +55,7 @@ export default function SignIn() {
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/login`
     })
-    .then(res=> {
+    .then(res=> { //check if necessary, maybe remove.
       //get the user id, and pass to library
       return axios({
         method: 'get',
