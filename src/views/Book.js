@@ -33,9 +33,9 @@ export default function (props) {
             <div style={{ position: 'relative' }}>
                 <img src={header} style={{ width: '100%', position: 'absolute', left: '0%', right: '0%', top: '-12%', bottom: '80%' }} alt="header" />
                 <Search></Search>
-                <div className="books">
+                <div className="books" style={{position:'absolute', top:'150px', left:'0', right:'0'}}>
                     <Book name={book.title} cover={book.covers ? book.covers[0] : null} ></Book>
-                    <div className="buttons" style={{ marginTop: '40%' }}>
+                    <div className="buttons">
                         <BooksButtons ></BooksButtons>
                     </div>
                 </div>

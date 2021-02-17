@@ -113,13 +113,14 @@ class Reviews extends Component {
     reviewStyle = {
         backgroundColor: 'white',
         position: 'absolute',
-        width: '100%',
+        width: '99%',
         border: '1px black solid',
         borderRadius: '13px',
         left: '0',
         right:'0',
+        top:'150px',
         height: '557px',
-        maxHeight: '350px',
+        maxHeight: '300px',
         overflow:'scroll',
         
     }
@@ -139,6 +140,7 @@ class Reviews extends Component {
                 <div style={{position:'relative'}}>
                     <img src={header} style={{width:'100%', position: 'absolute', left:'0%', right:'0%', top: '-12%', bottom:'80%'}}  alt="header"/>
                     <Search></Search>
+                    <h2 style={{color:'white', fontFamily:'Tahoma', position:'absolute', left:'0', right:'0', textAlign:'center', top:'50px'}}>Reviews</h2>  
                     <div className="review" style={this.reviewStyle}>
                         {this.state.reviews.map(this.eachReview)}
                     </div>

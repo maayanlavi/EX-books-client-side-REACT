@@ -66,6 +66,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// function showResults() {
+//   let name = document.getElementById("try").value;
+//   $.ajax({
+//       url: `http://openlibrary.org/search.json?title=${name}`,
+//       type: 'GET',
+//       success: function (res) {
+//           if (res.docs.length > 0)
+//               window.location.href = `book.html?bookId=${res.docs[0].key.split('/')[2]}`;
+//           else
+//               alert("Book not found")
+//       }
+//   });
+// }
+
 export default function SearchAppBar() {
   const classes = useStyles();
 
@@ -82,7 +96,7 @@ export default function SearchAppBar() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
+            <InputBase 
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
