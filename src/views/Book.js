@@ -6,6 +6,7 @@ import header from '../assets/css/img/ReadBooks/header.png';
 import Search from '../Components/Search';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import { Chip, Grid } from '@material-ui/core';
 
 
 export default function (props) {
@@ -26,19 +27,22 @@ export default function (props) {
         };
 
         await getBookData(id);
-    }, id)
+    }, [])
 
     return (
         <>
             <div style={{ position: 'relative' }}>
                 <img src={header} style={{ width: '100%', position: 'absolute', left: '0%', right: '0%', top: '-12%', bottom: '80%' }} alt="header" />
                 <Search></Search>
-                <div className="books" style={{position:'absolute', top:'150px', left:'0', right:'0'}}>
-                    <Book name={book.title} cover={book.covers ? book.covers[0] : null} ></Book>
+                <Grid container direction="column" className="books" style={{position:'absolute', top:'150px'}}>
+                    <Book name={book.title} cover={book.covers ? book.covers[0] : null} subject={book.subjects} ></Book>
+                    <Grid container direction="row" spacing={1} alignContent="center" justify="center">
+                    { book.subjects ? book.subjects.slice(0, 5).map(s => <Grid item key={s}> <Chip size="small" label={s}></Chip> </Grid>) : <Chip size="small" label="General" ></Chip> }
+                    </Grid>
                     <div className="buttons">
-                        <BooksButtons ></BooksButtons>
+                        <BooksButtons id={id} ></BooksButtons>
                     </div>
-                </div>
+                </Grid>
             </div>
             <Menu />
         </>

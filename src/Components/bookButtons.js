@@ -19,23 +19,42 @@ export default function BookButtons(props) {
   const bookId = props.id;
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [openNotification, setOpenNotification] = React.useState(false)
+  const [openNotification, setOpenNotification] = React.useState(false);
+  const [notificationText, setNotificationText] = React.useState('');
   const addToWishlist = () => {
     axios({
-      method: 'get',
+      method: 'get', //first get the connected user information from the server
       url: `${process.env.REACT_APP_SERVER}/api/current_user`,
       withCredentials: true
     })
-    .then(res => { console.log(res.data); return res.data._id})
-    .then(userId => {
+    .then(res => { console.log(res.data); return res.data._id}) //return the user id in the response
+    .then(userId => { //this 'then' receieves the user id as parameter
       return axios({
         method: 'post',
         url: `${process.env.REACT_APP_SERVER}/api/users/${userId}/wishlist`,
-        data: { id: bookId },
+        data: { id: bookId }, //the server expects a json in the format { id: 'some_book_id'}
         withCredentials: true
       })
     })
-    .then((res) => { console.log(res); setOpenNotification(true)})
+    .then((res) => { setNotificationText('Book added to wishlist'); setOpenNotification(true)})
+  }
+
+  const addToMyBooks = () => {
+    axios({
+      method: 'get', //first get the connected user information from the server
+      url: `${process.env.REACT_APP_SERVER}/api/current_user`,
+      withCredentials: true
+    })
+    .then(res => { console.log(res.data); return res.data._id}) //return the user id in the response
+    .then(userId => { //this 'then' receieves the user id as parameter
+      return axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_SERVER}/api/users/${userId}/books`,
+        data: { id: bookId }, //the server expects a json in the format { id: 'some_book_id'}
+        withCredentials: true
+      })
+    })
+    .then((res) => { setNotificationText('Book added to your book list');  setOpenNotification(true)})
   }
 
   return (
@@ -50,8 +69,9 @@ export default function BookButtons(props) {
     >
       <BottomNavigationAction component={Link} to="/AllReviews" label="Reviews" icon={<RestoreIcon />} />
       <BottomNavigationAction label="WishList" icon={<FavoriteIcon />} onClick={addToWishlist} />
-      <BottomNavigationAction label="Add" icon={<LocationOnIcon />} />
+      <BottomNavigationAction label="Add" icon={<LocationOnIcon />} onClick={addToMyBooks}/>
     </BottomNavigation>
+    {/* snackbar is used to notify the user for something, as a small popup */}
     <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
@@ -59,7 +79,7 @@ export default function BookButtons(props) {
         }}
         open={openNotification}
         autoHideDuration={1000}
-        message="Book added to wishlist"
+        message={notificationText}
         onClose={e => setOpenNotification(false)}
       />
     </>

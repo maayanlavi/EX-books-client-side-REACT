@@ -7,11 +7,11 @@ import { Grid, Typography } from '@material-ui/core';
 
 class book extends Component {
     constructor(props){
+        // the book componenet receieves as prop the book id, cover id (or null if there is no cover) name and category
         super(props);
     }
 
     render() {
-        console.log(this.props)
         let coverUrl = this.props.cover ? `https://covers.openlibrary.org/b/id/${this.props.cover}-M.jpg` : 'https://via.placeholder.com/108x100.png'
         return (
             <>
@@ -23,10 +23,6 @@ class book extends Component {
                     <NavLink to={`/Book/${this.props.id}`}><Typography align='center'>{this.props.name}</Typography></NavLink>
                 </Grid>
             </Grid>
-            {/* <div className="book" style={this.divStyle}> 
-                <NavLink style={{ textDecoration: 'black' }} to="/Book"></NavLink>
-                <h3 style={this.style1}>{this.props.name}</h3>
-            </div> */}
             </>
             
         )
