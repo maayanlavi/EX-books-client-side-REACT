@@ -1,113 +1,96 @@
 import React, { Component } from 'react';
 import Review from './review';
+import { withRouter } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
 import Menu from '../Components/Menu';
-import header from '../assets/css/img/ReadBooks/header.png';
-import Search from '../Components/Search';
+import axiosInstance from '../API/axios';
 
 class Reviews extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            name:'',
-            text:'',
-            stars:'',
-            button:'Save',
             id: -1,
-            reviews: [ ]
+            isEditing: false,
+            reviewToEdit: null,
+            reviews: []
         }
         this.eachReview = this.eachReview.bind(this);
         this.delete = this.delete.bind(this);
-        this.update = this.update.bind(this);
-        this.add = this.add.bind(this);
-        //this.addJson = this.addJson.bind(this);
         this.nextId = this.nextId.bind(this);
-        this.handleName = this.handleName.bind(this);
-        this.handleText = this.handleText.bind(this);
-        this.handleStars = this.handleStars.bind(this);
-        this.displayStars = this.displayStars.bind(this);
     }
-
-    eachReview(item, i) {
-        return <Review key={i} index={item.id} onDelete={this.delete} onUpdate={this.update}>{item.name} <br/> {item.text} <br/> {item.stars} </Review>
+    componentDidMount() {
+        this.handleLoadReviews()
     }
-
-    handleName(e) {
-        this.setState({name: e.target.value});
+    eachReview(item) {
+        console.log(item)
+        const { _id } = item;
+        return <Review
+            key={_id}
+            onDelete={this.delete}
+            reviewId={_id}
+            review={item}
+            onUpdate={this.handleUpdate}>
+            {item.name}
+            <br />
+            {item.text}
+            <br /> 
+            {item.stars}
+        </Review>
     }
-
-    handleText(e) {
-        this.setState({text: e.target.value});
-    }
-
-    handleStars(e) {
-        this.setState({stars: e.target.value});
-    }
-
-    displayStars() {
-        var stars = '';
-        for (var i=0;i<this.state.stars;++i)
-        {
-            stars+='* ';
-        }
-        return stars;
-    }
-     
-    add() {
-
-        if (this.state.button === 'Save') {
-            this.setState(prevState => ({
-                
-                reviews: [
-                    ...prevState.reviews, {
-                        id: this.nextId(prevState.reviews),
-                        name: this.state.name !== '' ?  this.state.name : 'anonymous',   
-                        text: this.state.text !== '' ? this.state.text : 'nothing to say',
-                        stars: this.state.stars !== '' ? this.displayStars() : '*' //one star is the default
-                    }
-                ]
-            }))
-    }
-    else {
-        this.setState(prevState => ({
-            reviews: prevState.reviews.map(
-                review => review.id !== this.state.id ? review : {...review,
-                name: this.state.name,  
-                text: this.state.text,
-                stars: this.state.stars
+    handleLoadReviews = () => {
+        const { id } = this.props.match.params;
+        axiosInstance.get(`/api/reviews/`, {
+            params: {
+                book_id: id,
             }
-            )
-        }))
+        })
+            .then((res) => this.setState({ reviews: res.data }))
+            .catch((err) => console.log(err))
+    }
+    handleReview = (e, formValues, onResetForm) => {
+        const { isEditing } = this.state;
+        e.preventDefault();
+        const { name, text, stars } = formValues;
+        const { id } = this.props.match.params;
+        if (isEditing) {
+            const { reviewId } = this.state.reviewToEdit;
+            axiosInstance.put(`/api/reviews/${reviewId}`, {
+                    name,
+                    text,
+                    stars,
+            }).then(() => {
+                this.setState({isEditing: false, reviewToEdit: null});
+                this.handleLoadReviews()
+            })
+        }
+        else {
+            axiosInstance.post('/api/reviews', {
+                review: {
+                    name,
+                    text,
+                    stars,
+                    book_id: id,
+                }
+            }).then(() => {
+                this.handleLoadReviews()
+                onResetForm()
+            })
+        }
     }
 
-    this.setState(() => ({
-        name:'',
-        text:'',
-        stars:'',
-        button:'Save',
-    })) 
-}
-
-    nextId(reviews =[]) {
-        let max = reviews.reduce((prev, curr) => prev.id > curr.id ? prev.id : curr.id , 0);
+    nextId(reviews = []) {
+        let max = reviews.reduce((prev, curr) => prev.id > curr.id ? prev.id : curr.id, 0);
         return ++max;
     }
 
     delete(id) {
-        this.setState(prevState => ({
-            reviews: prevState.reviews.filter(name => name.id !== id),
-            
-        }))
+        axiosInstance.delete(`/api/reviews/${id}`).then(() => {
+            this.handleLoadReviews();
+        })
     }
-    update(id) {
-        this.setState(() => ({
-            name: this.state.reviews.filter(name2 => name2.id === id)[0].name,
-            text: this.state.reviews.filter(name2 => name2.id === id)[0].text,
-            stars: this.state.reviews.filter(name2 => name2.id === id)[0].stars,
-            id:id,
-            button:'Update',
-        }))
+    handleUpdate = (id, reviewValues) => {
+        this.setState({ reviewToEdit: { ...reviewValues, reviewId: id }, isEditing: true, })
     }
 
     reviewStyle = {
@@ -117,37 +100,39 @@ class Reviews extends Component {
         border: '1px black solid',
         borderRadius: '13px',
         left: '0',
-        right:'0',
-        top:'150px',
+        right: '0',
+        top: '150px',
         height: '557px',
         maxHeight: '300px',
-        overflow:'scroll',
-        
+        overflow: 'scroll',
+
     }
 
     formStyle = {
-        position:"absolute",
-        top:'500px',
-        right:'0',
-        left:'0',
-        width:'50%',
+        position: "absolute",
+        top: '500px',
+        right: '0',
+        left: '0',
+        width: '50%',
 
     }
 
     render() {
-        return(
+        const { isEditing } = this.state;
+        const buttonText = isEditing ? 'Edit' : 'Save'
+        return (
             <>
-                    <h2 style={{color:'white', fontFamily:'Tahoma', position:'absolute', left:'0', right:'0', textAlign:'center', top:'50px'}}>Reviews</h2>  
-                    <div className="review" style={this.reviewStyle}>
-                        {this.state.reviews.map(this.eachReview)}
-                    </div>
-                    <div className="form" style={this.formStyle}>
-                        <AddReviewForm name={this.state.name} text={this.state.text} stars={this.state.stars} button={this.state.button} onSubmitForm= {this.add} handleName={this.handleName} handleText={this.handleText} handleStars={this.handleStars} />
-                    </div>                    
-                <Menu/>
+                <h2 style={{ color: 'white', fontFamily: 'Tahoma', position: 'absolute', left: '0', right: '0', textAlign: 'center', top: '50px' }}>Reviews</h2>
+                <div className="review" style={this.reviewStyle}>
+                    {this.state.reviews.map(this.eachReview)}
+                </div>
+                <div className="form" style={this.formStyle}>
+                    <AddReviewForm onSubmit={this.handleReview} buttonText={buttonText} reviewToEdit={this.state.reviewToEdit}/>
+                </div>
+                <Menu />
             </>
         )
     }
 }
 
-export default Reviews;
+export default withRouter(Reviews);

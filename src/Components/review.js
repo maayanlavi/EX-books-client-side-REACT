@@ -19,11 +19,11 @@ class Review extends Component {
         this.setState({
             editing: true
         })
-        this.props.onUpdate(this.props.index)
+        this.props.onUpdate(this.props.reviewId, this.props.review)
     }
 
     delete() {
-        this.props.onDelete(this.props.index)
+        this.props.onDelete(this.props.reviewId)
     }
 
     reviewStyle = {

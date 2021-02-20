@@ -62,7 +62,7 @@ const ReactRouter = () => {
                     <Book />
                 </Layout>
             </Route>
-            <Route path="/AllReviews">
+            <Route path="/AllReviews/:id">
                 <Layout>
                     <AllReviews />
                 </Layout>
