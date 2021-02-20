@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Profile from "../views/Profile.js";
 import HomePage from "../views/HomePage.js";
 import WishList from "../views/WishList.js";
@@ -8,33 +8,81 @@ import MySwaps from '../views/MySwaps';
 import SignIn from '../views/SignIn';
 import SignUp from '../views/SignUp';
 import Book from '../views/Book';
-import { Route } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import App from '../App';
 import Menu from '../Components/Menu';
 import AllReviews from '../Components/reviews';
 import ReadBooks from '../views/ReadBooks';
 import ReviewThem from '../views/ReviewThem';
 import MakeASwap from '../views/MakeASwap';
+import Layout from '../Components/Layout/Layout.js';
 
 
 
-const ReactRouter =() => {
-        return(
-            <React.Fragment>
-                <Route exact path='/' component={ReadBooks}/>
-                <Route path="/MyBooks" component={MyBooks}/>
-                <Route path="/Library" component={AllBooks}/>
-                <Route path="/WishList" component={WishList}/>
-                <Route path="/MySwaps" component={MySwaps}/>
-                <Route path="/SignIn" component={SignIn}/>
-                <Route path="/SignUp" component={SignUp}/>                
-                <Route path="/Profile" component={Profile}/>
-                <Route exact path="/Book/:id" component={Book}/>
-                <Route path="/AllReviews" component={AllReviews}/>
-                <Route path="/ReviewThem" component={ReviewThem}/>
-                <Route path="/MakeASwap" component={MakeASwap}/>
-            </React.Fragment>
-        )
+const ReactRouter = () => {
+    const [isLogged, setIsLogged] = useState(false);
+    let routes = <>
+        <Route path="/SignIn">
+            <SignIn setIsLogged={setIsLogged} />
+        </Route>
+        <Route path="/SignUp" component={SignUp} />
+        <Route path="/">
+            <Redirect to="/signin" />
+        </Route>
+    </>
+    if (isLogged) {
+        routes = <>
+            <Route path="/MyBooks">
+                <Layout title='My Books'>
+                    <MyBooks />
+                </Layout>
+            </Route>
+            <Route path="/Library">
+                <Layout title='Library'>
+                    <AllBooks />
+                </Layout>
+            </Route>
+            <Route path="/WishList">
+                <Layout title='My Wish List'>
+                    <WishList />
+                </Layout>
+            </Route>
+            <Route path="/MySwaps">
+                <Layout title='My Swaps'>
+                    <MySwaps />
+                </Layout>
+            </Route>
+            <Route path="/Profile">
+                <Layout>
+                    <Profile />
+                </Layout>
+            </Route>
+            <Route exact path="/Book/:id" component={Book}>
+                <Layout>
+                    <Book />
+                </Layout>
+            </Route>
+            <Route path="/AllReviews">
+                <Layout>
+                    <AllReviews />
+                </Layout>
+            </Route>
+        </>
+    }
+    return (
+        <Switch>
+            <Route exact path='/'>
+                <ReadBooks />
+            </Route>
+            <Route path="/ReviewThem">
+                <ReviewThem />
+            </Route>
+            <Route path="/MakeASwap">
+                <MakeASwap />
+            </Route>
+            {routes}
+        </Switch>
+    )
 }
 
 export default ReactRouter;

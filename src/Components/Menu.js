@@ -11,7 +11,7 @@ import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
 import {NavLink} from 'react-router-dom';
 
 
-export default function TriggersTooltips() {
+export default function Menu() {
   const [open, setOpen] = React.useState(false);
 
   const handleTooltipClose = () => {

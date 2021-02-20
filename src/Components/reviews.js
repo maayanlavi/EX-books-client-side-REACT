@@ -137,18 +137,13 @@ class Reviews extends Component {
     render() {
         return(
             <>
-                <div style={{position:'relative'}}>
-                    <img src={header} style={{width:'100%', position: 'absolute', left:'0%', right:'0%', top: '-12%', bottom:'80%'}}  alt="header"/>
-                    <Search></Search>
                     <h2 style={{color:'white', fontFamily:'Tahoma', position:'absolute', left:'0', right:'0', textAlign:'center', top:'50px'}}>Reviews</h2>  
                     <div className="review" style={this.reviewStyle}>
                         {this.state.reviews.map(this.eachReview)}
                     </div>
                     <div className="form" style={this.formStyle}>
                         <AddReviewForm name={this.state.name} text={this.state.text} stars={this.state.stars} button={this.state.button} onSubmitForm= {this.add} handleName={this.handleName} handleText={this.handleText} handleStars={this.handleStars} />
-                    </div>
-                </div>
-                    
+                    </div>                    
                 <Menu/>
             </>
         )

@@ -12,38 +12,32 @@ import { Chip, Grid } from '@material-ui/core';
 export default function (props) {
     const [book, setBook] = useState({})
     const params = useParams()
-    const {id} = params;
+    const { id } = params;
 
     useEffect(async () => {
-        const getBookData = async (bookId) => {
-            const bookInfo = await axios(
-                {
-                    method: 'get',
-                    url: `https://openlibrary.org/works/${id}.json`
-                }
-            )
-            .then(res => res.data)
-            setBook(bookInfo);
-        };
-
-        await getBookData(id);
-    }, [])
+        const getBookData = async () => {
+            try {
+                const bookInfo = await axios(`https://openlibrary.org/works/${id}.json`)
+                setBook(bookInfo.data);
+            }
+            catch (error) {
+             console.log(error);
+            }
+        }
+        getBookData();
+        }, [id])
 
     return (
         <>
-            <div style={{ position: 'relative' }}>
-                <img src={header} style={{ width: '100%', position: 'absolute', left: '0%', right: '0%', top: '-12%', bottom: '80%' }} alt="header" />
-                <Search></Search>
-                <Grid container direction="column" className="books" style={{position:'absolute', top:'150px'}}>
+                <Grid container direction="column" className="books" style={{ position: 'absolute', top: '150px' }}>
                     <Book name={book.title} cover={book.covers ? book.covers[0] : null} subject={book.subjects} ></Book>
                     <Grid container direction="row" spacing={1} alignContent="center" justify="center">
-                    { book.subjects ? book.subjects.slice(0, 5).map(s => <Grid item key={s}> <Chip size="small" label={s}></Chip> </Grid>) : <Chip size="small" label="General" ></Chip> }
+                        {book.subjects ? book.subjects.slice(0, 5).map(s => <Grid item key={s}> <Chip size="small" label={s}></Chip> </Grid>) : <Chip size="small" label="General" ></Chip>}
                     </Grid>
                     <div className="buttons">
                         <BooksButtons id={id} ></BooksButtons>
                     </div>
                 </Grid>
-            </div>
             <Menu />
         </>
     )

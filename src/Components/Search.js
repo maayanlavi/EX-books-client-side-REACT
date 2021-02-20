@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +9,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: '0%',
-    marginTop:'0%',
+    marginTop: '0%',
     width: '50%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
@@ -66,44 +68,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// function showResults() {
-//   let name = document.getElementById("try").value;
-//   $.ajax({
-//       url: `http://openlibrary.org/search.json?title=${name}`,
-//       type: 'GET',
-//       success: function (res) {
-//           if (res.docs.length > 0)
-//               window.location.href = `book.html?bookId=${res.docs[0].key.split('/')[2]}`;
-//           else
-//               alert("Book not found")
-//       }
-//   });
-// }
 
 export default function SearchAppBar() {
+  const { push } = useHistory();
   const classes = useStyles();
-
+  const [searchValue, setSearchValue] = useState('')
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (searchValue) {
+      axios
+        .get(`http://openlibrary.org/search.json?title=${searchValue}`)
+        .then((res) =>  push(`/book${res.data.docs[0].key.slice(6)}`))
+        .catch((err) => console.log(err))
+    }
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
-      <NavLink to='/Profile'><div style={{color:'white', position:'absolute', left:'85%',zIndex:'1'}}>
-                <Toolbar>            
-                    <PersonIcon/>
-                </Toolbar>
-            </div></NavLink>
+        <NavLink to='/Profile'><div style={{ color: 'white', position: 'absolute', left: '85%', zIndex: '1' }}>
+          <Toolbar>
+            <PersonIcon />
+          </Toolbar>
+        </div></NavLink>
         <Toolbar>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase 
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            <form onSubmit={onSubmit}>
+              <InputBase
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </form>
           </div>
         </Toolbar>
       </AppBar>

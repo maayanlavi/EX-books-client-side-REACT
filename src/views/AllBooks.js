@@ -24,15 +24,10 @@ export default function AllBooks() {
         }, []);
         return(
             <>
-                <div style={{position:'relative' }}>
-                    <img src={header} style={{width:'100%', position: 'absolute', left:'0%', right:'0%', top: '-12%', bottom:'80%'}}  alt="header"/>
-                    <h2 style={{color:'white', fontFamily:'Tahoma', position:'absolute', left:'0', right:'0', textAlign:'center', top:'50px'}}>Library</h2>  
-                    <Search></Search>
                     <Grid container direction='column' style={{position:'absolute', top:'150px', paddingBottom:'80px'}}>
                         {books.map(b => <Grid item  key={b.id}> <Book cover={b.cover} name={b.name} id={b.id}/> </Grid>)}
                     </Grid>
                     <Menu/>
-                </div>
             </>
         )
     }

@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {NavLink, useHistory} from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import blueTop from '../assets/css/img/ReadBooks/Ellipse8.png';
 import orange from '../assets/css/img/ReadBooks/Ellipse6.png';
 import axios from 'axios';
@@ -39,52 +39,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({ setIsLogged }) {
   const classes = useStyles();
-  const [signInemail, setSignInemail]= useState("");
-  const [signInpassword, setSignInpassword]= useState("");
+  const [signInemail, setSignInemail] = useState("");
+  const [signInpassword, setSignInpassword] = useState("");
   const history = useHistory()
-  const login=(event)=>{
+  const login = (event) => {
     event.preventDefault();
     axios({
-      method:"POST",
-      data:{
+      method: "POST",
+      data: {
         email: signInemail,
         password: signInpassword,
       },
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/login`
     })
-    .then(res=> { //check if necessary, maybe remove.
-      //get the user id, and pass to library
-      return axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_SERVER}/api/current_user`,
-        withCredentials: true
+      .then(res => { //check if necessary, maybe remove.
+        //get the user id, and pass to library
+        return axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_SERVER}/api/current_user`,
+          withCredentials: true
+        })
       })
-    })
-    .then(res => {console.log(res); return res.data._id})
-    .then(userId => history.push(`/Library/${userId}`))
-    .catch(err => console.log("show message login failed")) //maayan / dana i dont know how to fix the overflow and cant add stuff
+      .then(res => { console.log(res); return res.data._id })
+      .then(userId => {
+        setIsLogged(true);
+        history.push(`/Library/${userId}`)
+      })
+      .catch(err => console.log("show message login failed", err)) //maayan / dana i dont know how to fix the overflow and cant add stuff
   };
-  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <img src={blueTop} style={{position: 'absolute', left:'-1%', top: '-1%'}}  alt="book"/>
+      <img src={blueTop} style={{ position: 'absolute', left: '-1%', top: '-1%' }} alt="book" />
       <div className={classes.paper}>
-      <img src={orange} style={{position: 'absolute', left:'70%', top: '14%', bottom:'70%', width:'30%' }}  alt="book"/>
-        <Typography component="h1" variant="h5" style={{position:'absolute', top:'25%', color:'rgba(56, 79, 125, 0.8)'}}>
+        <img src={orange} style={{ position: 'absolute', left: '70%', top: '14%', bottom: '70%', width: '30%' }} alt="book" />
+        <Typography component="h1" variant="h5" style={{ position: 'absolute', top: '25%', color: 'rgba(56, 79, 125, 0.8)' }}>
           Sign in
         </Typography>
-        <form className={classes.form} noValidate style={{position:'absolute', top:'35%', width:'90%'}}>
-        <TextField onChange={e => setSignInemail(e.target.value)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+        <form className={classes.form} noValidate style={{ position: 'absolute', top: '35%', width: '90%' }}>
+          <TextField onChange={e => setSignInemail(e.target.value)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
           <TextField onChange={e => setSignInpassword(e.target.value)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button type="submit" onClick= {login} fullWidth variant="contained" color="primary" className={classes.submit}  style={{backgroundColor:'rgba(186, 251, 103, 1)', color:'white', fontFamily:'tahoma'}}>
+          <Button type="submit" onClick={login} fullWidth variant="contained" color="primary" className={classes.submit} style={{ backgroundColor: 'rgba(186, 251, 103, 1)', color: 'white', fontFamily: 'tahoma' }}>
             <b>Sign In</b>
           </Button>
           <Grid container>
