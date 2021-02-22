@@ -8,11 +8,13 @@ import LocalLibraryTwoToneIcon from '@material-ui/icons/LocalLibraryTwoTone';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import SwapHorizontalCircleTwoToneIcon from '@material-ui/icons/SwapHorizontalCircleTwoTone';
 import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
+import axios from 'axios'
 
 
 export default function Menu() {
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -20,6 +22,13 @@ export default function Menu() {
 
   const handleTooltipOpen = () => {
     setOpen(true);
+  };
+
+  const handleLogout = () => {
+    axios({
+      url: `${process.env.REACT_APP_SERVER}/logout`,
+      withCredentials: true
+    }).then(() => history.push("/SignIn"))
   };
 
   return (
@@ -61,7 +70,7 @@ export default function Menu() {
           <Tooltip disableFocusListener disableTouchListener title="Add">
           <div style={{position:'relative'}}>      
               <ExitToAppTwoToneIcon style={{position:'absolute', left:'35%'}}/>
-              <NavLink to="/SignIn"> <Button style={{fontSize:'9px', textAlign:'center'}}><br/>Logout</Button></NavLink>
+              <Button style={{fontSize:'9px', textAlign:'center'}} onClick={handleLogout}><br/>Logout</Button>
           </div>
           </Tooltip>
         </Grid>

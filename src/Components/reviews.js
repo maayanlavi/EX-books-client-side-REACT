@@ -40,7 +40,7 @@ class Reviews extends Component {
     }
     handleLoadReviews = () => {
         const { id } = this.props.match.params;
-        axiosInstance.get(`/api/reviews/`, {
+        axiosInstance.get(`${process.env.REACT_APP_SERVER}/api/reviews/`, {
             params: {
                 book_id: id,
             }
@@ -55,7 +55,7 @@ class Reviews extends Component {
         const { id } = this.props.match.params;
         if (isEditing) {
             const { reviewId } = this.state.reviewToEdit;
-            axiosInstance.put(`/api/reviews/${reviewId}`, {
+            axiosInstance.put(`${process.env.REACT_APP_SERVER}/api/reviews/${reviewId}`, {
                     name,
                     text,
                     stars,
@@ -65,7 +65,7 @@ class Reviews extends Component {
             })
         }
         else {
-            axiosInstance.post('/api/reviews', {
+            axiosInstance.post(`${process.env.REACT_APP_SERVER}/api/reviews`, {
                 review: {
                     name,
                     text,
