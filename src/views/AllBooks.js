@@ -1,7 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
 import Book from '../Components/book';
-import header from '../assets/css/img/ReadBooks/header.png';
-import Search from '../Components/Search';
 import Menu from '../Components/Menu';
 import axios from 'axios';
 import { Grid } from '@material-ui/core';
