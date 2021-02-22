@@ -65,7 +65,6 @@ export default function SignIn({ setIsLogged }) {
       })
       .then(res => { console.log(res); return res.data._id })
       .then(userId => {
-        setIsLogged(true);
         history.push(`/Library/${userId}`)
       })
       .catch(err => console.log("show message login failed", err)) //maayan / dana i dont know how to fix the overflow and cant add stuff

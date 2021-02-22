@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Field } from '@progress/kendo-react-form';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 import light from '../assets/css/img/ReadBooks/light.png';
 import blueTop from '../assets/css/img/ReadBooks/Ellipse8.png';
 
@@ -60,6 +60,10 @@ export default function SignUp() {
   const [registerstreet, setRegisterstreet]= useState("");
   const [registerphoneNum, setRegisterphoneNum]= useState("");
   const [registerage, setRegisterage]= useState("");
+  
+  const history = useHistory()
+    
+
   const register=(e)=>{
     e.preventDefault();
     axios({
@@ -78,7 +82,7 @@ export default function SignUp() {
       },
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/register`
-    }).then(res=> console.log(res));
+    }).then(res => history.push("/SignIn"));
 
   }
 
