@@ -77,7 +77,7 @@ export default function SignUp() {
       },
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/register`,
-    }).then(res => history.push("/SignIn"));
+    }).then(res => history.push("/Library"));
   };
   const assetValidation = (e) => {
     e.preventDefault()
