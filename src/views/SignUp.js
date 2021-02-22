@@ -147,7 +147,7 @@ export default function SignUp() {
                 autoComplete="lname"
                 autoFocus
               />
-              {errors.last_name && <Typography>Missing first name</Typography>} 
+              {errors.last_name && <Typography>Missing last name</Typography>} 
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
