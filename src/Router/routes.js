@@ -45,7 +45,7 @@ const ReactRouter = () => {
             </Layout>
         </Route>
         <Route path="/Profile">
-            <Layout>
+            <Layout title='Edit your profile'>
                 <Profile />
             </Layout>
         </Route>
