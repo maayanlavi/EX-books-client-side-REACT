@@ -36,14 +36,6 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
         setStars('')
     }
 
-    const displayStars = (e) => {
-        var stars = '';
-        for (var i=0; i<e; ++i) {
-            stars+='★'
-        }
-        return stars;
-        }
-
     return (
         <form 
         className="form" 

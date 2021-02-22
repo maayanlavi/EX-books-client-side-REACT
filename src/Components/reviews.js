@@ -38,6 +38,7 @@ class Reviews extends Component {
             {item.stars}
         </Review>
     }
+
     handleLoadReviews = () => {
         const { id } = this.props.match.params;
         axiosInstance.get(`${process.env.REACT_APP_SERVER}/api/reviews/`, {
