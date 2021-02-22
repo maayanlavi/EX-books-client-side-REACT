@@ -46,6 +46,7 @@ export default function SignIn({ setIsLogged }) {
   const history = useHistory()
   const login = (event) => {
     event.preventDefault();
+    console.log(signInemail, signInpassword)
     axios({
       method: "POST",
       data: {
