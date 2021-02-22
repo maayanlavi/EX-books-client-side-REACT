@@ -32,12 +32,11 @@ export default function MySwaps() {
         getSwapRequests();
     }, [])
 
-    
     return (
         <>
             <div className="books" style={{ position: 'absolute', left: '0', right: '0', }}>
                 <Grid container direction="column" alignContent="center" justify="center" >
-                { swaps.map(s => <Swap key={s._id} email={s[userInfo._id == s.user_id1._id ? "user_id1" : "user_id2"].email} date={s.swap_date} ></Swap>) }
+                { swaps.map(s => <Swap key={s._id} swap={s} userid={userInfo._id} ></Swap>) }
                 </Grid>
             </div>
             <Menu />

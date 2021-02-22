@@ -64,7 +64,7 @@ export default function (props) {
             let swapRequest = {
                 user_id1: userinfo._id,
                 user_id2:selectedUser,
-                book_id1: id,
+                book_id2: id,
                 swap_status: 'Pending' }
             
             return axios({
