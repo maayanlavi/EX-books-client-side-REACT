@@ -59,67 +59,15 @@ export default function SignUp() {
   const history = useHistory()
     
 
-  const register=(e)=>{
-    e.preventDefault();
+  const register=(data)=>{
     axios({
       method: "POST",
-      data: {
-        first_name: registerfirstName,
-        last_name: registerlastName,
-        email: registeremail,
-        password: registerpassword,
-        address: {
-          city: registercity,
-          street: registerstreet,
-        },
-        phone_num: registerphoneNum,
-        age: registerage,
-      },
+      data: data,
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/register`,
     }).then(res => history.push("/SignIn"));
   };
-  const assetValidation = (e) => {
-    e.preventDefault()
-    let errors = [];
-    if (registerfirstName === "")
-      errors.push(
-        "First Name is requierd, please make sure you have entered the first name\n"
-      );
-    if (registerlastName === "")
-      errors.push(
-        "Last Name is requierd, please make sure you have entered the last name\n"
-      );
-    if (
-      registeremail ===
-      "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/"
-    )
-      errors.push(
-        "Email is requierd, please make sure you have entered the correct email\n"
-      );
-    if (registerpassword === "/^d{10}$/")
-      errors.push(
-        "Password is requierd, Please make sure you enter a password of up to 10 numbers\n"
-      );
-    if (registercity === "")
-      errors.push(
-        "City is requierd, please make sure you have entered your city\n"
-      );
-    if (registerstreet === "")
-      errors.push(
-        "Street is requierd, please make sure you have entered your street\n"
-      );
-    if (registerphoneNum === "/^d{10}$/")
-      errors.push(
-        "Street is requierd, please make sure you have entered your street\n"
-      );
-    if (registerage === "/^[15-90]+$/")
-      errors.push(
-        "Street is requierd, please make sure you have entered your street\n"
-      );
-    if (errors.length > 0) alert(errors);
-    else return true;
-  };
+
   const getUser = () => {};
 
   return (
@@ -165,7 +113,7 @@ export default function SignUp() {
           Create your account to get started. After that, you can share books
           and make swaps.
         </Typography>
-        <form onSubmit={assetValidation}
+        <form onSubmit={handleSubmit(register)}
           className={classes.form}
           noValidate
           style={{ position: "absolute", top: "35%", width: "90%" }}
@@ -173,9 +121,9 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Controller as={TextField}
-                name="first name"
+                name="first_name"
                 control={control}
-                rules={{required:true, pattern: ""}}
+                rules={{required:true}}
                 autoComplete="fname"
                 onChange={(e) => setRegisterfirstName(e.target.value)}
                 variant="outlined"
@@ -184,27 +132,28 @@ export default function SignUp() {
                 label="First Name"
                 autoFocus
               />
+              {errors.first_name && <Typography>Missing first name</Typography>}    
             </Grid>
             <Grid item xs={12} sm={6}>
               <Controller as={TextField}
-                name="lastName"
+                name="last_name"
                 control={control}
                 rules={{required:true, pattern: ""}}
                 variant="outlined"
                 onChange={(e) => setRegisterlastName(e.target.value)}
                 fullWidth
-                id="lastName"
+                id="last_name"
                 label="Last Name"
-                name="lastName"
                 autoComplete="lname"
                 autoFocus
               />
+              {errors.last_name && <Typography>Missing first name</Typography>} 
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
                 variant="outlined"
                 control={control}
-                rules={{required:true, pattern: "/\S+@\S+\.\S+/"}}
+                rules={{ pattern: /\S+@\S+\.\S+/, required: true }}
                 onChange={(e) => setRegisteremail(e.target.value)}
                 fullWidth
                 id="email"
@@ -212,6 +161,7 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
               />
+              {errors.email && <Typography>Incorrect email</Typography>} 
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
@@ -226,6 +176,7 @@ export default function SignUp() {
                 id="password"
                 autoComplete="current-password"
               />
+              {errors.password && <Typography>Incorrect Password</Typography>} 
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
@@ -234,12 +185,13 @@ export default function SignUp() {
                 rules={{required:true, pattern: ""}}
                 onChange={(e) => setRegistercity(e.target.value)}
                 fullWidth
-                name="city"
+                name="address.city"
                 label="city"
                 type="city"
                 id="city"
                 autoComplete="city"
               />
+              {/* {errors.address.city && <Typography>Missing city</Typography>}  */}
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
@@ -248,12 +200,13 @@ export default function SignUp() {
                 rules={{required:true, pattern: ""}}
                 onChange={(e) => setRegisterstreet(e.target.value)}
                 fullWidth
-                name="street"
+                name="address.street"
                 label="street"
                 type="street"
                 id="street"
                 autoComplete="street"
               />
+              {/* {errors.address.street && <Typography>Missing street</Typography>}  */}
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
@@ -268,6 +221,7 @@ export default function SignUp() {
                 id="age"
                 autoComplete="age"
               />
+              {errors.age && <Typography>Missing age</Typography>} 
             </Grid>
             <Grid item xs={12}>
               <Controller as={TextField}
@@ -276,12 +230,13 @@ export default function SignUp() {
                 rules={{required:true, pattern: "/^d{10}$/"}}
                 onChange={(e) => setRegisterphoneNum(e.target.value)}
                 fullWidth
-                name="phoneNum"
+                name="phone_num"
                 label="phoneNum"
                 type="phoneNum"
                 id="phoneNum"
                 autoComplete="phoneNum"
               />
+              {errors.phone_num && <Typography>Incorrect phone number</Typography>} 
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
