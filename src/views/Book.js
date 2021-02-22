@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { Button, Chip, Grid, MenuItem, Select, Typography } from '@material-ui/core';
 
-
 export default function (props) {
     const [book, setBook] = useState({})
     const [bookCities, setBookCities] = useState([])
@@ -26,19 +25,15 @@ export default function (props) {
             }).then(res => res.data)
 
             setUserInfo(userInfo);
-            
-            if (bookInfo.subjects && bookInfo.subjects.some(s => blockedSubjects.includes(s) ))
+
+            if (bookInfo.subjects && bookInfo.subjects.some(s => blockedSubjects.includes(s)))
                 setBookWarning(true);
-
-            console.log(bookInfo.subjects);
-
 
             setBook(bookInfo);
 
         }
         getBookData();
     }, [id])
-
 
     useEffect(async () => {
         const getBookCities = async () => {
@@ -56,53 +51,54 @@ export default function (props) {
 
     const createSwapRequest = () => {
         axios({
-          url: `${process.env.REACT_APP_SERVER}/api/current_user`,
-          withCredentials: true
+            url: `${process.env.REACT_APP_SERVER}/api/current_user`,
+            withCredentials: true
         })
-        .then(res => res.data)
-        .then(userinfo => {
-            let swapRequest = {
-                user_id1: userinfo._id,
-                user_id2:selectedUser,
-                book_id2: id,
-                swap_status: 'Pending' }
-            
-            return axios({
-                withCredentials: true,
-                method: "POST",
-                data: swapRequest,
-                url: `${process.env.REACT_APP_SERVER}/api/swaps/`
+            .then(res => res.data)
+            .then(userinfo => {
+                let swapRequest = {
+                    user_id1: userinfo._id,
+                    user_id2: selectedUser,
+                    book_id1: id,
+                    swap_status: 'Pending'
+                }
+
+                return axios({
+                    withCredentials: true,
+                    method: "POST",
+                    data: swapRequest,
+                    url: `${process.env.REACT_APP_SERVER}/api/swaps/`
+                })
             })
-        })
-        .then(res => console.log(res));
+            .then(res => console.log(res));
     }
 
-    
+
 
     return (
         <>
             <Grid container direction="column" className="books" style={{ position: 'absolute', top: '150px' }} alignItems="center" alignContent="center">
-                {  showBookWarning &&  <Typography>This book is not suited for yound audiences</Typography> } 
-                { ((showBookWarning && userInfo.age > 18) || (!showBookWarning)) &&  <>
-                        <Book name={book.title} cover={book.covers ? book.covers[0] : null} subject={book.subjects} ></Book>
-                        <Grid container direction="row" spacing={1} alignContent="center" justify="center">
-                            {book.subjects ? book.subjects.slice(0, 5).map(s => <Grid item key={s}> <Chip size="small" label={s}></Chip> </Grid>) : <Chip size="small" label="General" ></Chip>}
-                        </Grid>
-                        <div className="buttons">
-                            <BooksButtons id={id} />
-                        </div>
-                            <Grid container direction="row" alignContent="center" justify="center">
-                            <Typography>Loan from</Typography>
-                            <Select style={{marginLeft: "20px"}} onChange={e => setSelectedUser(e.target.value)} >
-                                { bookCities.map(item => <MenuItem key={item._id} value={item._id}>{item.first_name},{item.age}-{item.city}</MenuItem>) }
-                            </Select>
-                            <Button onClick={createSwapRequest} variant="contained" style={{marginLeft: "30px"}} disabled={selectedUser == null}>Send</Button>
-                            </Grid>
-                            
+                {showBookWarning && <Typography>This book is not suited for yound audiences</Typography>}
+                {((showBookWarning && userInfo.age > 18) || (!showBookWarning)) && <>
+                    <Book name={book.title} cover={book.covers ? book.covers[0] : null} subject={book.subjects} ></Book>
+                    <Grid container direction="row" spacing={1} alignContent="center" justify="center">
+                        {book.subjects ? book.subjects.slice(0, 5).map(s => <Grid item key={s}> <Chip size="small" label={s}></Chip> </Grid>) : <Chip size="small" label="General" ></Chip>}
+                    </Grid>
+                    <div className="buttons">
+                        <BooksButtons id={id} />
+                    </div>
+                    <Grid container direction="row" alignContent="center" justify="center">
+                        <Typography>Loan from</Typography>
+                        <Select style={{ marginLeft: "20px" }} onChange={e => setSelectedUser(e.target.value)} >
+                            {bookCities.map(item => <MenuItem key={item._id} value={item._id}>{item.first_name},{item.age}-{item.city}</MenuItem>)}
+                        </Select>
+                        <Button onClick={createSwapRequest} variant="contained" style={{ marginLeft: "30px" }} disabled={selectedUser == null}>Send</Button>
+                    </Grid>
 
-                            
-                            
-                  </>}
+
+
+
+                </>}
             </Grid>
             <Menu />
         </>

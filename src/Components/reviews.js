@@ -23,7 +23,6 @@ class Reviews extends Component {
         this.handleLoadReviews()
     }
     eachReview(item) {
-        console.log(item)
         const { _id } = item;
         return <Review
             key={_id}
@@ -34,7 +33,7 @@ class Reviews extends Component {
             {item.name}
             <br />
             {item.text}
-            <br /> 
+            <br />
             {item.stars}
         </Review>
     }
@@ -57,11 +56,11 @@ class Reviews extends Component {
         if (isEditing) {
             const { reviewId } = this.state.reviewToEdit;
             axiosInstance.put(`${process.env.REACT_APP_SERVER}/api/reviews/${reviewId}`, {
-                    name,
-                    text,
-                    stars,
+                name,
+                text,
+                stars,
             }).then(() => {
-                this.setState({isEditing: false, reviewToEdit: null});
+                this.setState({ isEditing: false, reviewToEdit: null });
                 this.handleLoadReviews()
             })
         }
@@ -128,7 +127,7 @@ class Reviews extends Component {
                     {this.state.reviews.map(this.eachReview)}
                 </div>
                 <div className="form" style={this.formStyle}>
-                    <AddReviewForm onSubmit={this.handleReview} buttonText={buttonText} reviewToEdit={this.state.reviewToEdit}/>
+                    <AddReviewForm onSubmit={this.handleReview} buttonText={buttonText} reviewToEdit={this.state.reviewToEdit} />
                 </div>
                 <Menu />
             </>

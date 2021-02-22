@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Profile from "../views/Profile.js";
-import HomePage from "../views/HomePage.js";
 import WishList from "../views/WishList.js";
 import AllBooks from '../views/AllBooks';
 import MyBooks from '../views/MyBooks';
@@ -9,16 +8,12 @@ import SignIn from '../views/SignIn';
 import SignUp from '../views/SignUp';
 import Book from '../views/Book';
 import { Route, Switch, Redirect } from "react-router-dom";
-import App from '../App';
-import Menu from '../Components/Menu';
 import AllReviews from '../Components/reviews';
 import ReadBooks from '../views/ReadBooks';
 import ReviewThem from '../views/ReviewThem';
 import MakeASwap from '../views/MakeASwap';
 import Layout from '../Components/Layout/Layout.js';
 import Search from '../views/Search.js';
-
-
 
 const ReactRouter = () => {
     let routes = <>
@@ -50,7 +45,7 @@ const ReactRouter = () => {
             </Layout>
         </Route>
         <Route path="/Profile">
-            <Layout>
+            <Layout title='Edit your profile'>
                 <Profile />
             </Layout>
         </Route>
@@ -69,8 +64,8 @@ const ReactRouter = () => {
                 <AllReviews />
             </Layout>
         </Route>
-        </>
-    
+    </>
+
     return (
         <Switch>
             <Route exact path='/'>

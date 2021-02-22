@@ -26,7 +26,6 @@ export default function MyWishlist() {
                 .then(res => res.data)
 
             setWishlistItems(wishlist);
-
         }
 
         loadWishList();
@@ -52,7 +51,6 @@ export default function MyWishlist() {
     return (
         <>
             <div style={{ position: 'absolute', top: '150px', left: '0', right: '0' }}>
-                {/* <button style={{position:'absolute', left:'0', right:'0', top:'10px', display: 'block', justifyContent: 'center', alignItems: 'center', margin: 'auto', backgroundColor: 'rgba(186, 251, 103, 1)', color: 'black', textAlign: 'center', fontSize: '25px', border:'1px solid #8C6630', borderRadius:'10px'}}><DeleteIcon/></button> */}
                 <Grid container direction="column" style={{ paddingBottom: "50px" }}>
                     {wishlistItems.map(item =>
                         <Grid item xs key={item.id}>

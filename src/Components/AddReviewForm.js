@@ -5,16 +5,16 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
     const [text, setText] = useState('');
     const [stars, setStars] = useState('');
     useEffect(() => {
-      if(reviewToEdit) {
-          setText(reviewToEdit.text)
-          setName(reviewToEdit.name);
-          setStars(reviewToEdit.stars);
-      }
-      else {
-        setText('')
-        setName('');
-        setStars('');
-      }
+        if (reviewToEdit) {
+            setText(reviewToEdit.text)
+            setName(reviewToEdit.name);
+            setStars(reviewToEdit.stars);
+        }
+        else {
+            setText('')
+            setName('');
+            setStars('');
+        }
     }, [reviewToEdit])
     const labelStyle = {
         height: '60px',
@@ -37,10 +37,10 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
     }
 
     return (
-        <form 
-        className="form" 
-        style={{ width: '100%', height: '100%', position: 'absolute', top: '-50px' }}
-         onSubmit={(e) => onSubmit(e, {name, text, stars}, onResetForm)}>
+        <form
+            className="form"
+            style={{ width: '100%', height: '100%', position: 'absolute', top: '-50px' }}
+            onSubmit={(e) => onSubmit(e, { name, text, stars }, onResetForm)}>
             <label>
                 <input
                     style={labelStyle}
