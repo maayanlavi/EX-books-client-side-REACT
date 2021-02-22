@@ -77,7 +77,7 @@ export default function SignUp() {
       },
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/register`,
-    }).then(res => history.push("/Library"));
+    }).then(res => history.push("/SignIn"));
   };
   const assetValidation = (e) => {
     e.preventDefault()
@@ -179,7 +179,6 @@ export default function SignUp() {
                 autoComplete="fname"
                 onChange={(e) => setRegisterfirstName(e.target.value)}
                 variant="outlined"
-                required
                 fullWidth
                 id="firstName"
                 label="First Name"
@@ -193,7 +192,6 @@ export default function SignUp() {
                 rules={{required:true, pattern: ""}}
                 variant="outlined"
                 onChange={(e) => setRegisterlastName(e.target.value)}
-                required
                 fullWidth
                 id="lastName"
                 label="Last Name"
@@ -206,9 +204,8 @@ export default function SignUp() {
               <Controller as={TextField}
                 variant="outlined"
                 control={control}
-                rules={{required:true, pattern: "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/"}}
+                rules={{required:true, pattern: "/\S+@\S+\.\S+/"}}
                 onChange={(e) => setRegisteremail(e.target.value)}
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -222,7 +219,6 @@ export default function SignUp() {
                 control={control}
                 rules={{required:true, pattern: "/^d{10}$/"}}
                 onChange={(e) => setRegisterpassword(e.target.value)}
-                required
                 fullWidth
                 name="password"
                 label="Password"
@@ -237,7 +233,6 @@ export default function SignUp() {
                 control={control}
                 rules={{required:true, pattern: ""}}
                 onChange={(e) => setRegistercity(e.target.value)}
-                required
                 fullWidth
                 name="city"
                 label="city"
@@ -252,7 +247,6 @@ export default function SignUp() {
                 control={control}
                 rules={{required:true, pattern: ""}}
                 onChange={(e) => setRegisterstreet(e.target.value)}
-                required
                 fullWidth
                 name="street"
                 label="street"
@@ -267,7 +261,6 @@ export default function SignUp() {
                 control={control}
                 rules={{required:true, pattern: "/^[15-90]+$/"}}
                 onChange={(e) => setRegisterage(e.target.value)}
-                required
                 fullWidth
                 name="age"
                 label="age"
@@ -282,7 +275,6 @@ export default function SignUp() {
                 control={control}
                 rules={{required:true, pattern: "/^d{10}$/"}}
                 onChange={(e) => setRegisterphoneNum(e.target.value)}
-                required
                 fullWidth
                 name="phoneNum"
                 label="phoneNum"
