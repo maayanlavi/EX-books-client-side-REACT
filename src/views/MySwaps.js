@@ -1,11 +1,7 @@
 
-<<<<<<< HEAD
-import React, { Component } from 'react';
-=======
 import React, { Component, useEffect, useState } from 'react';
 import header from '../assets/css/img/ReadBooks/header.png';
 import Search from '../Components/Search';
->>>>>>> 3acd5fa976334ba47b1e015204f884126307d71c
 import Swap from '../Components/swap';
 import Menu from '../Components/Menu';
 import axios from 'axios';

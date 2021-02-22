@@ -21,38 +21,6 @@ export default function(props) {
         fontSize: '15px',
         color: 'black',
         fontFamily: 'verdana',
-<<<<<<< HEAD
-        position: 'absolute',
-        top: '100px',
-        left: '0',
-        right: '0',
-        border: '1px solid'
-    }
-
-
-
-    render() {
-        return (
-            <>
-                <div style={this.style1}>
-                    <ButtonGroup color="black" aria-label="outlined primary button group">
-                        <Button><b>Confirm Swap</b></Button>
-                        <Button>Cancel Swap</Button>
-                    </ButtonGroup>
-                    <p>Date:</p>
-                    <p>The partner's Email:</p>
-                    <p>The book you gave:</p>
-                    <p>The book you received:</p>
-                    <p>Status:</p>
-                </div>
-
-            </>
-        )
-    }
-}
-
-export default AllBooks;
-=======
         position:'relative',
         top:'100px',
         left:'0',
@@ -80,4 +48,3 @@ export default AllBooks;
     )
     
 }
->>>>>>> 3acd5fa976334ba47b1e015204f884126307d71c
