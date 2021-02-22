@@ -172,10 +172,12 @@ export default function SignUp() {
         >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField
+              <Controller as={TextField}
+                name="first name"
+                control={control}
+                rules={{required:true, pattern: ""}}
                 autoComplete="fname"
                 onChange={(e) => setRegisterfirstName(e.target.value)}
-                name="firstName"
                 variant="outlined"
                 required
                 fullWidth
@@ -185,7 +187,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
+              <Controller as={TextField}
+                name="lastName"
+                control={control}
+                rules={{required:true, pattern: ""}}
                 variant="outlined"
                 onChange={(e) => setRegisterlastName(e.target.value)}
                 required
@@ -194,11 +199,14 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                autoFocus
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Controller as={TextField}
                 variant="outlined"
+                control={control}
+                rules={{required:true, pattern: "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/"}}
                 onChange={(e) => setRegisteremail(e.target.value)}
                 required
                 fullWidth
@@ -209,8 +217,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Controller as={TextField}
                 variant="outlined"
+                control={control}
+                rules={{required:true, pattern: "/^d{10}$/"}}
                 onChange={(e) => setRegisterpassword(e.target.value)}
                 required
                 fullWidth
@@ -222,8 +232,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Controller as={TextField}
                 variant="outlined"
+                control={control}
+                rules={{required:true, pattern: ""}}
                 onChange={(e) => setRegistercity(e.target.value)}
                 required
                 fullWidth
@@ -235,8 +247,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Controller as={TextField}
                 variant="outlined"
+                control={control}
+                rules={{required:true, pattern: ""}}
                 onChange={(e) => setRegisterstreet(e.target.value)}
                 required
                 fullWidth
@@ -248,8 +262,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Controller as={TextField}
                 variant="outlined"
+                control={control}
+                rules={{required:true, pattern: "/^[15-90]+$/"}}
                 onChange={(e) => setRegisterage(e.target.value)}
                 required
                 fullWidth
@@ -261,8 +277,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <Controller as={TextField}
                 variant="outlined"
+                control={control}
+                rules={{required:true, pattern: "/^d{10}$/"}}
                 onChange={(e) => setRegisterphoneNum(e.target.value)}
                 required
                 fullWidth
