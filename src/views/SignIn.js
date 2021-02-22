@@ -47,13 +47,10 @@ export default function SignIn({ setIsLogged }) {
   const { handleSubmit, control, reset, errors } = useForm();
   
   const history = useHistory()
-  const login = (event) => {
+  const login = (data) => {
     axios({
       method: "POST",
-      data: {
-        email: signInemail,
-        password: signInpassword,
-      },
+      data: data,
       withCredentials: true,
       url: `${process.env.REACT_APP_SERVER}/login`
     })
