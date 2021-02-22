@@ -35,6 +35,7 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
         setText('');
         setStars('')
     }
+
     return (
         <form 
         className="form" 
@@ -46,6 +47,7 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
                     placeholder="NAME"
                     type="text" name="name"
                     value={name}
+                    required
                     onChange={(e) => setName(e.target.value)} />
             </label>
             <br />
@@ -56,6 +58,7 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
                     type="text"
                     name="text"
                     value={text}
+                    required
                     onChange={(e) => setText(e.target.value)} />
             </label>
             <br />
@@ -70,6 +73,7 @@ const AddReviewForm = ({ onSubmit, reviewToEdit, buttonText }) => {
                     style={labelStyle}
                     name="stars"
                     value={stars}
+                    required
                     onChange={(e) => setStars(e.target.value)} />
             </label>
             <br />

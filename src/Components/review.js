@@ -33,41 +33,12 @@ class Review extends Component {
         textAlign:'center'
     }
 
-    button1Style = {
-        marginRight:'10px',
-        color:'white',
-        border: '2px solid #8C6630',
-        borderRadius:'15px',
-        backgroundColor:'black',
-        width:'36px',
-        height:'36px',
-        position:'relative',
-        right:'0',
-        left:'0',
-        marginTop:'20px'
-
-
-    }
-
-    button2Style = {
-        color:'white',
-        border: '2px solid #8C6630',
-        borderRadius:'15px',
-        backgroundColor:'black',
-        width:'36px',
-        height:'36px',
-        position:'relative',
-        right:'10px',
-        left:'0',
-        marginTop:'20px'
-    }
-
     render() {
         return (
             <div className="review" style={this.reviewStyle}> 
                 <span>{this.props.children}<br/></span>
-                <button style={this.button1Style} onClick={this.edit}><EditIcon/></button>
-                <button style={this.button2Style} onClick={this.delete}><DeleteIcon/></button>
+                <button onClick={this.edit}><EditIcon/></button>
+                <button onClick={this.delete}><DeleteIcon/></button>
             </div>
         )
     }
