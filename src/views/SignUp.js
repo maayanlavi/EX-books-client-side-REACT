@@ -16,6 +16,7 @@ import { Field } from "@progress/kendo-react-form";
 import { NavLink, useHistory } from "react-router-dom";
 import light from "../assets/css/img/ReadBooks/light.png";
 import blueTop from "../assets/css/img/ReadBooks/Ellipse8.png";
+import { Controller, useForm } from 'react-hook-form';
 
 //import { Button } from '@progress/kendo-react-buttons';
 
@@ -54,7 +55,7 @@ export default function SignUp() {
   const [registerstreet, setRegisterstreet]= useState("");
   const [registerphoneNum, setRegisterphoneNum]= useState("");
   const [registerage, setRegisterage]= useState("");
-  
+  const { handleSubmit, control, reset, errors } = useForm();
   const history = useHistory()
     
 
