@@ -7,7 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/Add';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 import { Snackbar } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -27,7 +27,7 @@ export default function BookButtons(props) {
       url: `${process.env.REACT_APP_SERVER}/api/current_user`,
       withCredentials: true
     })
-      .then(res => { console.log(res.data); return res.data._id }) //return the user id in the response
+      .then(res => { return res.data._id }) //return the user id in the response
       .then(userId => { //this 'then' receieves the user id as parameter
         return axios({
           method: 'post',
@@ -44,7 +44,7 @@ export default function BookButtons(props) {
       url: `${process.env.REACT_APP_SERVER}/api/current_user`,
       withCredentials: true
     })
-      .then(res => { console.log(res.data); return res.data._id }) //return the user id in the response
+      .then(res => { return res.data._id }) //return the user id in the response
       .then(userId => { //this 'then' receieves the user id as parameter
         return axios({
           method: 'post',
@@ -70,7 +70,6 @@ export default function BookButtons(props) {
         <BottomNavigationAction label="WishList" icon={<FavoriteIcon />} onClick={addToWishlist} />
         <BottomNavigationAction label="Add" icon={<LocationOnIcon />} onClick={addToMyBooks} />
       </BottomNavigation>
-      {/* snackbar is used to notify the user for something, as a small popup */}
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',

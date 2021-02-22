@@ -5,14 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
     },
-  }));
+}));
 
 class AllBooks extends Component {
     constructor(props) {
@@ -23,31 +23,31 @@ class AllBooks extends Component {
     style1 = {
         textAlign: 'center',
         fontSize: '15px',
-        color:'black',
+        color: 'black',
         fontFamily: 'verdana',
-        position:'absolute',
-        top:'100px',
-        left:'0',
-        right:'0',
+        position: 'absolute',
+        top: '100px',
+        left: '0',
+        right: '0',
         border: '1px solid'
     }
 
-    
+
 
     render() {
-        return(
+        return (
             <>
-            <div style={this.style1}>
-                <ButtonGroup color="black" aria-label="outlined primary button group">            
-                    <Button><b>Confirm Swap</b></Button>
-                    <Button>Cancel Swap</Button>
-                </ButtonGroup>
-                <p>Date:</p>
-                <p>The partner's Email:</p>
-                <p>The book you gave:</p>
-                <p>The book you received:</p>
-                <p>Status:</p>
-            </div>
+                <div style={this.style1}>
+                    <ButtonGroup color="black" aria-label="outlined primary button group">
+                        <Button><b>Confirm Swap</b></Button>
+                        <Button>Cancel Swap</Button>
+                    </ButtonGroup>
+                    <p>Date:</p>
+                    <p>The partner's Email:</p>
+                    <p>The book you gave:</p>
+                    <p>The book you received:</p>
+                    <p>Status:</p>
+                </div>
 
             </>
         )

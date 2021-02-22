@@ -1,7 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
 import Book from '../Components/book';
-import header from '../assets/css/img/ReadBooks/header.png';
-import Search from '../Components/Search';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Menu from '../Components/Menu';
 import axios from 'axios';
@@ -52,7 +50,6 @@ export default function MyBooks() {
     return (
         <>
             <div style={{ position: 'absolute', top: '150px', left: '0', right: '0' }}>
-                {/* <button style={{position:'absolute', left:'0', right:'0', top:'10px', display: 'block', justifyContent: 'center', alignItems: 'center', margin: 'auto', backgroundColor: 'rgba(186, 251, 103, 1)', color: 'black', textAlign: 'center', fontSize: '25px', border:'1px solid #8C6630', borderRadius:'10px'}}><DeleteIcon/></button> */}
                 <Grid container direction="column" style={{ paddingBottom: "50px" }}>
                     {myBooksItems.map(item =>
                         <Grid item xs key={item.id}>

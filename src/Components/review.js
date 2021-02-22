@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-
 class Review extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -30,15 +29,15 @@ class Review extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 'auto',
-        textAlign:'center'
+        textAlign: 'center'
     }
 
     render() {
         return (
-            <div className="review" style={this.reviewStyle}> 
-                <span>{this.props.children}<br/></span>
-                <button onClick={this.edit}><EditIcon/></button>
-                <button onClick={this.delete}><DeleteIcon/></button>
+            <div className="review" style={this.reviewStyle}>
+                <span>{this.props.children}<br /></span>
+                <button onClick={this.edit}><EditIcon /></button>
+                <button onClick={this.delete}><DeleteIcon /></button>
             </div>
         )
     }
