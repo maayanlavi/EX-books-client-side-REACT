@@ -17,6 +17,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import blueTop from '../assets/css/img/ReadBooks/Ellipse8.png';
 import orange from '../assets/css/img/ReadBooks/Ellipse6.png';
 import axios from 'axios';
+import { Controller, useForm } from 'react-hook-form';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +44,10 @@ export default function SignIn({ setIsLogged }) {
   const classes = useStyles();
   const [signInemail, setSignInemail] = useState("");
   const [signInpassword, setSignInpassword] = useState("");
+  const { handleSubmit, control, reset, errors } = useForm();
+  
   const history = useHistory()
   const login = (event) => {
-    event.preventDefault();
     axios({
       method: "POST",
       data: {
@@ -79,14 +81,16 @@ export default function SignIn({ setIsLogged }) {
         <Typography component="h1" variant="h5" style={{ position: 'absolute', top: '25%', color: 'rgba(56, 79, 125, 0.8)' }}>
           Sign in
         </Typography>
-        <form className={classes.form} noValidate style={{ position: 'absolute', top: '35%', width: '90%' }}>
-          <TextField onChange={e => setSignInemail(e.target.value)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
-          <TextField onChange={e => setSignInpassword(e.target.value)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+        <form className={classes.form} onSubmit={handleSubmit(login)} style={{ position: 'absolute', top: '35%', width: '90%' }}>
+          <Controller as={TextField} name="email" control={control} rules={{pattern: /\S+@\S+\.\S+/, required: true}} onChange={e => setSignInemail(e.target.value)} variant="outlined" margin="normal" fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+          {errors.email && <Typography color="red">Please enter a correct email</Typography>}
+          <Controller as={TextField} name="password" control={control} rule={{reuired: true}} onChange={e => setSignInpassword(e.target.value)} variant="outlined" margin="normal" fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+          {errors.password && <Typography color="red">Please enter a correct password</Typography>}
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button type="submit" onClick={login} fullWidth variant="contained" color="primary" className={classes.submit} style={{ backgroundColor: 'rgba(186, 251, 103, 1)', color: 'white', fontFamily: 'tahoma' }}>
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} style={{ backgroundColor: 'rgba(186, 251, 103, 1)', color: 'white', fontFamily: 'tahoma' }}>
             <b>Sign In</b>
           </Button>
           <Grid container>
