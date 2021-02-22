@@ -16,6 +16,7 @@ import ReadBooks from '../views/ReadBooks';
 import ReviewThem from '../views/ReviewThem';
 import MakeASwap from '../views/MakeASwap';
 import Layout from '../Components/Layout/Layout.js';
+import Search from '../views/Search.js';
 
 
 
@@ -56,6 +57,11 @@ const ReactRouter = () => {
         <Route exact path="/Book/:id" component={Book}>
             <Layout>
                 <Book />
+            </Layout>
+        </Route>
+        <Route path="/Search/:title" component={Search}>
+            <Layout>
+                <Search></Search>
             </Layout>
         </Route>
         <Route path="/AllReviews/:id">

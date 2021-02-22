@@ -75,12 +75,7 @@ export default function SearchAppBar() {
   const [searchValue, setSearchValue] = useState('')
   const onSubmit = (e) => {
     e.preventDefault();
-    if (searchValue) {
-      axios
-        .get(`http://openlibrary.org/search.json?title=${searchValue}`)
-        .then((res) =>  push(`/book${res.data.docs[0].key.slice(6)}`))
-        .catch((err) => console.log(err))
-    }
+    push(`/Search/${searchValue}`)
   }
   return (
     <div className={classes.root}>
