@@ -35,7 +35,7 @@ export default function MySwaps() {
     return (
         <>
             <div className="books" style={{ position: 'absolute', left: '0', right: '0', }}>
-                <Grid container direction="column" alignContent="center" justify="center" >
+                <Grid container direction="column" alignContent="center" justify="center" style={{marginBottom:'150px'}} >
                 { swaps.map(s => <Swap key={s._id} swap={s} userid={userInfo._id} ></Swap>) }
                 </Grid>
             </div>

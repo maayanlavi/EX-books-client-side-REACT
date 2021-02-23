@@ -93,7 +93,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs" style={{position:'absolute', top:'90px'}}>
       <CssBaseline />
-      <div className={classes.paper} >
+      <div className={classes.paper}  >
 
         <form onSubmit={handleSubmit(update)}
           className={classes.form}
@@ -228,7 +228,8 @@ export default function SignUp() {
               backgroundColor: "rgba(186, 251, 103, 1)",
               color: "white",
               fontFamily: "tahoma",
-              height:'30px'
+              height:'30px',
+              marginBottom:'50px'
             }}
           >
             <b>Save changes</b>
@@ -236,7 +237,7 @@ export default function SignUp() {
         </form>
       </div>
       <Box mt={5}></Box>
-      <Menu/>
+        <Menu/>
     </Container>
 
   );
