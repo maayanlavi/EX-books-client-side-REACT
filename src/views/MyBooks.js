@@ -54,7 +54,7 @@ export default function MyBooks() {
                     {myBooksItems.map(item =>
                         <Grid item xs key={item.id}>
                             <Grid container direction="column" alignItems="center">
-                                <Book id={item.id} name={item.name} cover={item.cover}></Book>
+                                <Book id={item.id} name={item.name} cover={item.cover} wishlist={true} ></Book>
                                 <button onClick={e => removeItemFromMyBooks(item.id, e)}><DeleteIcon /></button>
                             </Grid>
                         </Grid>)}

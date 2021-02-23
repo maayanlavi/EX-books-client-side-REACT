@@ -49,7 +49,7 @@ const ReactRouter = () => {
                 <Profile />
             </Layout>
         </Route>
-        <Route exact path="/Book/:id" component={Book}>
+        <Route exact path="/Book/:id/:src?" component={Book}>
             <Layout>
                 <Book />
             </Layout>

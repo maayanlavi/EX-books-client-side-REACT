@@ -69,7 +69,6 @@ export default function (props) {
     useEffect(async () => {
         const getBookInfo = async () => {
             const bookInfo = await axios(`https://openlibrary.org/works/${props.swap.book_id2}.json`).then(res => res.data);
-            console.log(bookInfo);
             setBookToGive(bookInfo.title);
         };
 
@@ -102,7 +101,7 @@ export default function (props) {
         <>
             <div style={style1}>
                 <ButtonGroup color="black" aria-label="outlined primary button group">
-                    <Button onClick={updateSwap} disabled={swap.swap_status != 'Pending'} ><b>Confirm Swap</b></Button>
+                    <Button onClick={updateSwap} disabled={swap.swap_status != 'Pending' || swap.user_id1._id == props.userid} ><b>Confirm Swap</b></Button>
                     <Button onClick={cancelSwap} disabled={swap.swap_status != 'Pending'} >Cancel Swap</Button>
                 </ButtonGroup>
                 <p>Date: {new Date(props.swap.swap_date).toDateString()}</p>
