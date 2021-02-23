@@ -15,7 +15,7 @@ export default function MakeASwap() {
             <img src={blue} style={{ position: 'absolute', left: '10%', right: '66%', top: '-1%', bottom: '92%' }} alt="blue" />
             <img src={swap} style={{ position: 'absolute', width: '50%', left: '25%', right: '25%', justifyContent: 'center', alignItems: 'center', top: '25%' }} alt="book" />
             <h2 style={{ fontFamily: 'Tahoma', fontSize: '32px', textAlign: 'center', color: 'rgba(56, 79, 125, 1)', position: 'absolute', left: '0%', right: '0%', top: '48%', bottom: '49%' }}>Make a Swap</h2>
-            <p style={{ fontFamily: 'Tahoma', fontSize: '14px', textAlign: 'center', color: 'rgba(56, 79, 125, 1)', position: 'relative', display: 'inline-block', left: '0%', right: '0%', top: '55%' }}>Create your account to get started. After that, you can share books and make friends.</p>
+            <p style={{ fontFamily: 'Tahoma', fontSize: '14px', textAlign: 'center', color: 'rgba(56, 79, 125, 1)', position: 'relative', display: 'inline-block', left: '0%', right: '0%', top: '55%' }}>Book exchanges with other users of the site and get theirs!</p>
             <NavLink to="/SignIn"><p style={{ fontFamily: 'Tahoma', fontSize: '16px', textAlign: 'center', color: 'rgba(56, 79, 125, 1)', position: 'relative', display: 'inline-block', left: '40%', right: '40%', top: '80%', textAlign: 'center' }}><b>Skip Intro</b></p></NavLink>
             <img src={points} style={{ position: 'absolute', left: '60px', top: '70%' }} alt="book" />
             <NavLink to="/SignIn"> <img src={arrow} style={{ position: 'absolute', left: '260px', top: '68%' }} alt="book" /></NavLink>

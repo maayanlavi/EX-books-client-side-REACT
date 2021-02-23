@@ -16,13 +16,9 @@ export default function (props) {
             }).then(res => res.data);
 
             setUserInfo(userInfo);
-            console.log(userInfo, props);
         }
         getUser();
     }, [])
-
-
-
 
     const edit = () => {
         setEditing(true);
