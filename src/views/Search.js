@@ -11,7 +11,7 @@ export default function (props) {
     const title = params.title;
     useEffect(async () => {
         const getBooks = async () => {
-            const bookList = await axios(`http://openlibrary.org/search.json?q=${title}`
+            const bookList = await axios(`https://openlibrary.org/search.json?q=${title}`
             ).then(results => {
                 return results.data.docs.filter(item => item.cover_i).slice(0, 10)
             })
