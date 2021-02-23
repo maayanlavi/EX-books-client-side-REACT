@@ -87,7 +87,7 @@ class Reviews extends Component {
     }
 
     delete(id) {
-        axiosInstance.delete(`${process.env.REACT_APP_SERVER}/api/reviews/${id}`).then(() => {
+        axiosInstance.delete(`${process.env.REACT_APP_SERVER}/api/reviews/${id}`, { withCredentials: true }).then(() => {
             this.handleLoadReviews();
         })
     }
