@@ -83,9 +83,17 @@ export default function (props) {
                 let swapRequest = {
                     user_id1: userinfo._id,
                     user_id2: selectedUser,
-                    book_id1: id,
-                    book_id2: selectedBook,
                     swap_status: 'Pending'
+                }
+
+                if (src == 'wishlist')
+                {
+                    swapRequest.book_id1 = id;
+                    swapRequest.book_id2 = selectedBook;
+                }
+                else
+                {
+                    swapRequest.book_id2 = id;
                 }
 
                 return axios({
@@ -121,7 +129,7 @@ export default function (props) {
                         </Select>
                         { (src && selectedUser) && renderBookList()
                         }
-                        <Button onClick={createSwapRequest} variant="contained" style={{ marginLeft: "30px" }} disabled={selectedUser == null}>Send</Button>
+                        <Button onClick={createSwapRequest} variant="contained" style={{ marginLeft: "30px" }} disabled={selectedUser == null || (src == 'wishlist' && selectedBook == null)}>Send</Button>
                     </Grid>
                 </>}
             </Grid>
