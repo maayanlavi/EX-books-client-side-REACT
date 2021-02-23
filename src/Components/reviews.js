@@ -23,9 +23,11 @@ class Reviews extends Component {
         this.handleLoadReviews()
     }
     eachReview(item) {
+        console.log(item);
         const { _id } = item;
         return <Review
             key={_id}
+            user={item.user_id}
             onDelete={this.delete}
             reviewId={_id}
             review={item}
@@ -44,7 +46,7 @@ class Reviews extends Component {
             params: {
                 book_id: id,
             }
-        })
+        }, {withCredentials: true})
             .then((res) => this.setState({ reviews: res.data }))
             .catch((err) => console.log(err))
     }
@@ -59,7 +61,7 @@ class Reviews extends Component {
                 name,
                 text,
                 stars,
-            }).then(() => {
+            }, {withCredentials: true}).then(() => {
                 this.setState({ isEditing: false, reviewToEdit: null });
                 this.handleLoadReviews()
             })
@@ -71,8 +73,8 @@ class Reviews extends Component {
                     text,
                     stars,
                     book_id: id,
-                }
-            }).then(() => {
+                },
+            }, {withCredentials: true}).then(() => {
                 this.handleLoadReviews()
                 onResetForm()
             })

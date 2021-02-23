@@ -1,46 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import axios from 'axios';
 
-class Review extends Component {
-    constructor(props) {
-        super(props);
+export default function (props) {
 
-        this.state = {
-            editing: false
+    const [editing, setEditing] = useState(false);
+    const [userInfo, setUserInfo] = useState({})
+
+    useEffect(async () => {
+        const getUser = async () => {
+            const userInfo = await axios({
+                withCredentials: true,
+                url: `${process.env.REACT_APP_SERVER}/api/current_user`
+            }).then(res => res.data);
+
+            setUserInfo(userInfo);
+            console.log(userInfo, props);
         }
+        getUser();
+    }, [])
 
-        this.edit = this.edit.bind(this);
-        this.delete = this.delete.bind(this);
+
+
+
+    const edit = () => {
+        setEditing(true);
+        props.onUpdate(props.reviewId, props.review)
     }
 
-    edit() {
-        this.setState({
-            editing: true
-        })
-        this.props.onUpdate(this.props.reviewId, this.props.review)
+    const remove = () => {
+        props.onDelete(props.reviewId)
     }
 
-    delete() {
-        this.props.onDelete(this.props.reviewId)
-    }
-
-    reviewStyle = {
+    const reviewStyle = {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 'auto',
         textAlign: 'center'
     }
 
-    render() {
-        return (
-            <div className="review" style={this.reviewStyle}>
-                <span>{this.props.children}<br /></span>
-                <button onClick={this.edit}><EditIcon /></button>
-                <button onClick={this.delete}><DeleteIcon /></button>
-            </div>
-        )
-    }
-}
+    return (
+        <div className="review" style={reviewStyle}>
+            <span>{props.children}<br /></span>
+            {  userInfo._id == props.user && 
+            <> 
+                <button onClick={edit}><EditIcon /></button>
+                <button onClick={remove}><DeleteIcon /></button>
+            </>}
+        </div>
+    )
 
-export default Review;
+}
