@@ -37,7 +37,7 @@ export default function Menu() {
           <Tooltip disableFocusListener title="Add">
             <div style={{ position: 'relative' }}>
               <MenuBookTwoToneIcon style={{ position: 'absolute', left: '35%' }} />
-              <NavLink to="/Library"> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />Library</Button></NavLink>
+              <NavLink to="/Library" style={{textDecoration: 'none'}}>  <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />Library</Button></NavLink>
             </div>
           </Tooltip>
         </Grid>
@@ -45,7 +45,7 @@ export default function Menu() {
           <Tooltip disableHoverListener title="Add">
             <div style={{ position: 'relative' }}>
               <LocalLibraryTwoToneIcon style={{ position: 'absolute', left: '35%' }} />
-              <NavLink to="/MyBooks"> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />My Books</Button></NavLink>
+              <NavLink to="/MyBooks" style={{textDecoration: 'none'}}> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />My Books</Button></NavLink>
             </div>
           </Tooltip>
         </Grid>
@@ -53,7 +53,7 @@ export default function Menu() {
           <Tooltip disableFocusListener disableTouchListener title="Add">
             <div style={{ position: 'relative' }}>
               <FavoriteTwoToneIcon style={{ position: 'absolute', left: '35%' }} />
-              <NavLink to="/Wishlist"> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />Wish List</Button></NavLink>
+              <NavLink to="/Wishlist" style={{textDecoration: 'none'}}> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />Wish List</Button></NavLink>
             </div>
           </Tooltip>
         </Grid>
@@ -61,7 +61,7 @@ export default function Menu() {
           <Tooltip disableFocusListener disableTouchListener title="Add">
             <div style={{ position: 'relative' }}>
               <SwapHorizontalCircleTwoToneIcon style={{ position: 'absolute', left: '35%' }} />
-              <NavLink to="/Myswaps"> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />My Swaps</Button></NavLink>
+              <NavLink to="/Myswaps" style={{textDecoration: 'none'}}> <Button style={{ fontSize: '9px', textAlign: 'center' }}><br />My Swaps</Button></NavLink>
             </div>
           </Tooltip>
         </Grid>
