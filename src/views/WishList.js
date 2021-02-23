@@ -55,7 +55,7 @@ export default function MyWishlist() {
                     {wishlistItems.map(item =>
                         <Grid item xs key={item.id}>
                             <Grid container direction="column" alignItems="center">
-                                <Book id={item.id} name={item.name} cover={item.cover}></Book>
+                                <Book id={item.id} name={item.name} cover={item.cover} ></Book>
                                 <button onClick={e => removeItemFromWishlist(item.id, e)}><DeleteIcon /></button>
                             </Grid>
                         </Grid>)}
